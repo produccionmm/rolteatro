@@ -1,19 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 const courses = [
   {
     title: "INTERPRETACIÓN PARA ADULTOS",
-    description: "Nivel Iniciación y Avanzado.\n1 vez por semana.",
+    description:
+      "Nivel Iniciación y Avanzado.\n1 vez por semana.",
+    image: "/images/Adultos.jpeg",
   },
   {
     title: "ENTRENAMIENTO ACTORAL",
-    description: "Técnica, escena y cámara.\n1 vez por semana.",
+    description:
+      "Técnica, escena y cámara.\n1 vez por semana.",
+    image: "/images/Fondo.jpeg",
   },
   {
     title: "VOZ Y EXPRESIÓN CORPORAL",
-    description: "Trabajo de voz, cuerpo y presencia escénica.",
+    description:
+      "Trabajo de voz, cuerpo y presencia escénica.",
+    image: "/images/Fondo.jpeg",
   },
 ];
 
@@ -21,53 +28,60 @@ export default function Courses() {
   return (
     <section
       id="courses"
-      className="bg-dark py-28 text-white"
+      className="bg-[#090909] py-32 text-white"
     >
-      <div className="container-section">
+      <div className="mx-auto max-w-7xl px-6">
 
-        <div className="mb-16 text-center">
+        <div className="mb-20 text-center">
 
-          <p className="uppercase tracking-[0.45em] text-[#C8A96A] font-semibold">
+          <p className="font-semibold uppercase tracking-[0.45em] text-[#C8A96A]">
             FORMACIÓN
           </p>
 
-          <h2 className="mt-4 section-title-light">
+          <h2 className="mt-5 text-5xl font-black">
             Nuestros cursos
           </h2>
 
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
+            Formación actoral para adultos con profesionales en activo.
+            Descubre una experiencia donde desarrollar tu creatividad,
+            confianza y presencia escénica.
+          </p>
+
         </div>
 
-        <div className="grid gap-8 lg:grid-cols-3">
+        <div className="grid gap-10 lg:grid-cols-3">
 
           {courses.map((course, index) => (
 
             <motion.article
               key={course.title}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{
                 duration: 0.6,
                 delay: index * 0.15,
               }}
-              className="overflow-hidden rounded-2xl border border-[#C8A96A]/30 bg-[#181818] transition hover:-translate-y-2 hover:border-[#C8A96A]"
+              className="overflow-hidden rounded-3xl border border-[#C8A96A]/20 bg-[#151515] shadow-xl transition duration-300 hover:-translate-y-3 hover:border-[#C8A96A]/70"
             >
 
-              {/* Imagen */}
+              <div className="relative h-72">
 
-              <div className="flex h-60 items-center justify-center bg-[#262626]">
+                <Image
+                  src={course.image}
+                  alt={course.title}
+                  fill
+                  className="object-cover"
+                />
 
-                <span className="text-lg text-gray-500">
-                  Imagen del curso
-                </span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
               </div>
 
-              {/* Contenido */}
-
               <div className="p-8">
 
-                <div className="mb-6 h-[2px] w-20 bg-[#C8A96A]" />
+                <div className="mb-6 h-[2px] w-24 bg-[#C8A96A]" />
 
                 <h3 className="text-2xl font-bold leading-tight">
                   {course.title}
@@ -79,9 +93,9 @@ export default function Courses() {
 
                 <a
                   href="#contact"
-                  className="mt-8 inline-flex rounded-lg bg-[#8B1E1E] px-6 py-3 font-semibold transition hover:bg-[#6d1515]"
+                  className="mt-8 inline-flex rounded-xl bg-[#8B1E1E] px-7 py-4 font-bold transition duration-300 hover:bg-[#6E1717]"
                 >
-                  MÁS INFORMACIÓN
+                  SOLICITAR INFORMACIÓN
                 </a>
 
               </div>

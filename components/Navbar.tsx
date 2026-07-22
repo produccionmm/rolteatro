@@ -4,47 +4,53 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <header className="fixed top-0 left-0 z-50 w-full border-b border-[#C8A96A]/20 bg-[#111111]/70 backdrop-blur-xl">
-      <nav className="container-section flex h-20 items-center justify-between">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-[#C8A96A]/20 bg-[#090909]/85 backdrop-blur-2xl shadow-xl shadow-black/30">
+      <nav className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6">
 
         {/* Logo */}
 
         <a
           href="#hero"
-          className="flex items-center gap-4"
+          className="flex items-center gap-4 transition duration-300 hover:scale-[1.02]"
         >
           <Image
             src="/images/logo.png"
             alt="Rolteatro"
-            width={55}
-            height={55}
+            width={62}
+            height={62}
             priority
-            className="rounded-full"
+            className="rounded-full border border-[#C8A96A]/40"
           />
 
           <div>
-
-            <h1 className="text-2xl font-bold tracking-wide">
+            <h1 className="text-3xl font-extrabold leading-none tracking-wide">
               <span className="text-white">ROL</span>
               <span className="text-[#C8A96A]">TEATRO</span>
             </h1>
 
-            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
-              Escuela & Compañía
+            <p className="mt-1 text-[11px] uppercase tracking-[0.45em] text-gray-400">
+              Escuela · Compañía
             </p>
-
           </div>
-
         </a>
 
         {/* Menú */}
 
-        <ul className="hidden items-center gap-10 text-sm font-medium uppercase tracking-widest lg:flex">
+        <ul className="hidden items-center gap-12 text-sm font-semibold uppercase tracking-[0.25em] lg:flex">
+
+          <li>
+            <a
+              href="#hero"
+              className="transition duration-300 hover:text-[#C8A96A]"
+            >
+              Inicio
+            </a>
+          </li>
 
           <li>
             <a
               href="#about"
-              className="transition hover:text-[#C8A96A]"
+              className="transition duration-300 hover:text-[#C8A96A]"
             >
               Escuela
             </a>
@@ -53,7 +59,7 @@ export default function Navbar() {
           <li>
             <a
               href="#courses"
-              className="transition hover:text-[#C8A96A]"
+              className="transition duration-300 hover:text-[#C8A96A]"
             >
               Cursos
             </a>
@@ -62,7 +68,7 @@ export default function Navbar() {
           <li>
             <a
               href="#shows"
-              className="transition hover:text-[#C8A96A]"
+              className="transition duration-300 hover:text-[#C8A96A]"
             >
               Espectáculos
             </a>
@@ -71,7 +77,7 @@ export default function Navbar() {
           <li>
             <a
               href="#contact"
-              className="transition hover:text-[#C8A96A]"
+              className="transition duration-300 hover:text-[#C8A96A]"
             >
               Contacto
             </a>
@@ -83,7 +89,7 @@ export default function Navbar() {
 
         <a
           href="#contact"
-          className="hidden rounded-lg border border-[#C8A96A] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#C8A96A] transition hover:bg-[#C8A96A] hover:text-[#111111] lg:inline-flex"
+          className="hidden rounded-xl border border-[#C8A96A] bg-[#C8A96A]/10 px-7 py-3 text-sm font-bold uppercase tracking-[0.2em] text-[#C8A96A] transition duration-300 hover:-translate-y-0.5 hover:bg-[#C8A96A] hover:text-black lg:inline-flex"
         >
           Inscríbete
         </a>
