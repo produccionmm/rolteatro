@@ -3,109 +3,109 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const courses = [
-  {
-    title: "INTERPRETACIÓN PARA ADULTOS",
-    description:
-      "Nivel Iniciación y Avanzado.\n1 vez por semana.",
-    image: "/images/Adultos.jpeg",
-  },
-  {
-    title: "ENTRENAMIENTO ACTORAL",
-    description:
-      "Técnica, escena y cámara.\n1 vez por semana.",
-    image: "/images/Fondo.jpeg",
-  },
-  {
-    title: "VOZ Y EXPRESIÓN CORPORAL",
-    description:
-      "Trabajo de voz, cuerpo y presencia escénica.",
-    image: "/images/Fondo.jpeg",
-  },
+const contents = [
+  "Introducción al teatro.",
+  "Expresión corporal.",
+  "Improvisación.",
+  "Voz y dicción.",
+  "Confianza escénica.",
+  "Construcción de personajes.",
+  "Análisis de textos.",
+  "Técnicas interpretativas.",
+  "Teatro contemporáneo.",
+  "Montaje de obras.",
+  "Actuación ante público.",
 ];
 
 export default function Courses() {
   return (
     <section
       id="courses"
-      className="bg-[#090909] py-32 text-white"
+      className="relative overflow-hidden bg-[#080808] py-28 text-white md:py-36"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="pointer-events-none absolute left-[-180px] top-1/3 h-[450px] w-[450px] rounded-full bg-[#8B1E1E]/10 blur-[150px]" />
 
-        <div className="mb-20 text-center">
+      <div className="pointer-events-none absolute right-[-180px] bottom-0 h-[450px] w-[450px] rounded-full bg-[#C8A96A]/10 blur-[150px]" />
 
-          <p className="font-semibold uppercase tracking-[0.45em] text-[#C8A96A]">
-            FORMACIÓN
+      <div className="relative mx-auto w-full max-w-7xl px-6 md:px-10">
+        {/* Encabezado */}
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-4xl text-center"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.55em] text-[#C8A96A]">
+            Formación
           </p>
 
-          <h2 className="mt-5 text-5xl font-black">
+          <h2 className="mt-6 text-5xl font-black leading-tight md:text-6xl">
             Nuestros cursos
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-gray-400">
-            Formación actoral para adultos con profesionales en activo.
-            Descubre una experiencia donde desarrollar tu creatividad,
-            confianza y presencia escénica.
-          </p>
+          <div className="mx-auto mt-8 h-[2px] w-24 bg-[#C8A96A]" />
+        </motion.div>
 
-        </div>
+        {/* Curso */}
 
-        <div className="grid gap-10 lg:grid-cols-3">
+        <motion.article
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto mt-20 grid max-w-5xl overflow-hidden rounded-3xl border border-[#C8A96A]/30 bg-[#151515] shadow-[0_30px_80px_rgba(0,0,0,0.55)] lg:grid-cols-[0.9fr_1.1fr]"
+        >
+          {/* Imagen */}
 
-          {courses.map((course, index) => (
+          <div className="relative h-[380px] overflow-hidden lg:h-auto lg:min-h-[580px]">
+            <Image
+              src="/images/Adultos.jpeg"
+              alt="Curso de teatro para adultos"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 45vw"
+              className="object-cover object-[center_38%]"
+            />
 
-            <motion.article
-              key={course.title}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.15,
-              }}
-              className="overflow-hidden rounded-3xl border border-[#C8A96A]/20 bg-[#151515] shadow-xl transition duration-300 hover:-translate-y-3 hover:border-[#C8A96A]/70"
-            >
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#151515]/20" />
+          </div>
 
-              <div className="relative h-72">
+          {/* Texto */}
 
-                <Image
-                  src={course.image}
-                  alt={course.title}
-                  fill
-                  className="object-cover"
-                />
+          <div className="flex flex-col items-center justify-center px-8 py-14 text-center sm:px-12 lg:px-14">
+            <p className="text-sm font-semibold uppercase tracking-[0.45em] text-[#C8A96A]">
+              Curso regular
+            </p>
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+            <h3 className="mt-6 text-4xl font-black leading-tight md:text-5xl">
+              Teatro para adultos
+            </h3>
 
-              </div>
+            <div className="mx-auto mt-7 h-[2px] w-20 bg-[#C8A96A]" />
 
-              <div className="p-8">
-
-                <div className="mb-6 h-[2px] w-24 bg-[#C8A96A]" />
-
-                <h3 className="text-2xl font-bold leading-tight">
-                  {course.title}
-                </h3>
-
-                <p className="mt-6 whitespace-pre-line leading-8 text-gray-300">
-                  {course.description}
-                </p>
-
-                <a
-                  href="#contact"
-                  className="mt-8 inline-flex rounded-xl bg-[#8B1E1E] px-7 py-4 font-bold transition duration-300 hover:bg-[#6E1717]"
+            <ul className="mt-9 grid w-full max-w-xl gap-x-8 gap-y-4 text-base leading-7 text-gray-300 sm:grid-cols-2">
+              {contents.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start justify-center gap-3 text-center"
                 >
-                  SOLICITAR INFORMACIÓN
-                </a>
+                  <span className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#C8A96A]" />
 
-              </div>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
 
-            </motion.article>
-
-          ))}
-
-        </div>
-
+            <a
+              href="#contact"
+              className="mt-11 inline-flex items-center justify-center rounded-xl bg-[#8B1E1E] px-9 py-4 text-center text-sm font-bold uppercase tracking-[0.1em] transition duration-300 hover:-translate-y-1 hover:bg-[#6E1717] hover:shadow-[0_0_30px_rgba(139,30,30,0.45)]"
+            >
+              Solicitar información
+            </a>
+          </div>
+        </motion.article>
       </div>
     </section>
   );
