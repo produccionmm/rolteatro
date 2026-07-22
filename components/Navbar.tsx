@@ -4,37 +4,90 @@ import Image from "next/image";
 
 export default function Navbar() {
   return (
-    <header className="fixed left-0 top-0 z-50 w-full border-b border-red-900/20 bg-black/60 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <header className="fixed top-0 left-0 z-50 w-full border-b border-[#C8A96A]/20 bg-[#111111]/70 backdrop-blur-xl">
+      <nav className="container-section flex h-20 items-center justify-between">
 
-        <div className="flex items-center gap-3">
+        {/* Logo */}
+
+        <a
+          href="#hero"
+          className="flex items-center gap-4"
+        >
           <Image
-            src="/images/logo.jpg"
+            src="/images/logo.png"
             alt="Rolteatro"
             width={55}
             height={55}
-            className="rounded-full"
             priority
+            className="rounded-full"
           />
 
           <div>
-            <h1 className="text-2xl font-bold text-white">
-              <span className="text-red-600">ROL</span>TEATRO
+
+            <h1 className="text-2xl font-bold tracking-wide">
+              <span className="text-white">ROL</span>
+              <span className="text-[#C8A96A]">TEATRO</span>
             </h1>
 
-            <p className="text-xs text-gray-400">
-              Escuela y Compañía de Teatro
+            <p className="text-xs uppercase tracking-[0.3em] text-gray-400">
+              Escuela & Compañía
             </p>
-          </div>
-        </div>
 
-        <ul className="hidden gap-8 font-medium text-gray-200 md:flex">
-          <li className="cursor-pointer transition hover:text-red-500">Inicio</li>
-          <li className="cursor-pointer transition hover:text-red-500">Escuela</li>
-          <li className="cursor-pointer transition hover:text-red-500">Cursos</li>
-          <li className="cursor-pointer transition hover:text-red-500">Espectáculos</li>
-          <li className="cursor-pointer transition hover:text-red-500">Contacto</li>
+          </div>
+
+        </a>
+
+        {/* Menú */}
+
+        <ul className="hidden items-center gap-10 text-sm font-medium uppercase tracking-widest lg:flex">
+
+          <li>
+            <a
+              href="#about"
+              className="transition hover:text-[#C8A96A]"
+            >
+              Escuela
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#courses"
+              className="transition hover:text-[#C8A96A]"
+            >
+              Cursos
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#shows"
+              className="transition hover:text-[#C8A96A]"
+            >
+              Espectáculos
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="#contact"
+              className="transition hover:text-[#C8A96A]"
+            >
+              Contacto
+            </a>
+          </li>
+
         </ul>
+
+        {/* Botón */}
+
+        <a
+          href="#contact"
+          className="hidden rounded-lg border border-[#C8A96A] px-6 py-3 text-sm font-semibold uppercase tracking-wider text-[#C8A96A] transition hover:bg-[#C8A96A] hover:text-[#111111] lg:inline-flex"
+        >
+          Inscríbete
+        </a>
+
       </nav>
     </header>
   );
