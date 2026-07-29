@@ -30,19 +30,8 @@ const categories: Category[] = [
   {
     title: "Montajes",
     text: "Conoce algunas de las producciones que ROLTEATRO ha llevado a escena a lo largo de su trayectoria.",
-    button: "Ver montajes",
+    button: "Imágenes",
   },
-  {
-    title: "En cartel",
-    text: "Consulta las representaciones y actividades teatrales que se encuentran actualmente en programación.",
-    button: "Más información",
-  },
-  {
-    title: "Próximos montajes",
-    text: "Descubre los nuevos proyectos, producciones y propuestas escénicas de ROLTEATRO.",
-    button: "Más información",
-  },
-];
 
 const shows: Show[] = [
   {
