@@ -4,6 +4,11 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+type GalleryImage = {
+  src: string;
+  alt: string;
+};
+
 type Show = {
   title: string;
   author: string;
@@ -12,10 +17,7 @@ type Show = {
   posterAlt: string;
   summary: string;
   synopsis: string[];
-  gallery: {
-    src: string;
-    alt: string;
-  }[];
+  gallery: GalleryImage[];
 };
 
 type Category = {
@@ -28,7 +30,7 @@ const categories: Category[] = [
   {
     title: "Montajes",
     text: "Conoce algunas de las producciones que ROLTEATRO ha llevado a escena a lo largo de su trayectoria.",
-    button: "Más información",
+    button: "Ver montajes",
   },
   {
     title: "En cartel",
@@ -53,15 +55,10 @@ const shows: Show[] = [
       "Humor, ironía, ternura y emoción en dos de las comedias más emblemáticas de Antón Chéjov.",
     synopsis: [
       "Representar Petición de mano y El oso, dos de las comedias más emblemáticas de Antón Chéjov, supone un apasionante reto para ROLTEATRO. Desde el respeto y la humildad, nos acercamos a un autor que, bajo una aparente sencillez, retrata con brillantez las contradicciones y emociones del ser humano.",
-
       "Ambas obras comparten un mismo hilo conductor: el triunfo del amor sobre los intereses materiales. Con humor, ironía y personajes inolvidables, Chéjov nos invita a reflexionar sobre los verdaderos valores de la vida.",
-
       "En Petición de mano, los nervios, la hipocondría y los constantes enfrentamientos no impedirán que Lomov y Natalia encuentren un inesperado camino hacia el matrimonio.",
-
       "En El oso, una disputa por una deuda termina transformándose, de forma tan absurda como divertida, en una inesperada historia de amor.",
-
       "Humor, ternura y emoción se unen en estas dos pequeñas joyas teatrales que siguen demostrando que, por encima de todo, el amor es capaz de cambiarlo todo.",
-
       "Esperamos que disfruten de esta representación tanto como nosotros hemos disfrutado llevándola a escena.",
     ],
     gallery: [
@@ -78,7 +75,7 @@ const shows: Show[] = [
     poster: "/images/CartelCisne.jpg",
     posterAlt: "Cartel de El canto del cisne",
     summary:
-      "Montaje de ROLTEATRO basado en una de las piezas teatrales más reconocidas de Antón Chéjov.",
+      "Una pieza teatral de Antón Chéjov que reflexiona sobre el oficio del actor, la memoria y el paso del tiempo.",
     synopsis: [
       "La información completa y la sinopsis de este montaje se incorporarán próximamente.",
     ],
@@ -104,11 +101,11 @@ const shows: Show[] = [
   {
     title: "Bécquer",
     author: "Gustavo Adolfo Bécquer",
-    year: "2021",
+    year: "2022",
     poster: "/images/CartelBecquer.jpg",
     posterAlt: "Cartel del montaje Bécquer",
     summary:
-      "Una propuesta escénica de ROLTEATRO inspirada en el universo literario de Gustavo Adolfo Bécquer.",
+      "Una propuesta escénica inspirada en el universo literario y poético de Gustavo Adolfo Bécquer.",
     synopsis: [
       "La información completa y la sinopsis de este montaje se incorporarán próximamente.",
     ],
@@ -133,6 +130,74 @@ const shows: Show[] = [
         src: "/images/Becquer3.jpg",
         alt: "Fotografía del montaje Bécquer 3",
       },
+      {
+        src: "/images/Becquer4.jpg",
+        alt: "Fotografía del montaje Bécquer 4",
+      },
+    ],
+  },
+  {
+    title: "Don Juan Tenorio",
+    author: "José Zorrilla",
+    year: "2023",
+    poster: "/images/CartelDonJuan.jpg",
+    posterAlt: "Cartel de Don Juan Tenorio",
+    summary:
+      "Pasión, honor, misterio y redención en uno de los grandes clásicos del teatro español.",
+    synopsis: [
+      "Don Juan Tenorio narra la historia de un seductor arrogante y temerario que desafía todas las normas morales y sociales.",
+      "Tras conquistar mujeres y enfrentarse a numerosos rivales, su vida cambia al enamorarse de Doña Inés, un amor puro que despierta en él el deseo de redención.",
+      "Entre pasión, honor, duelos y misterio, la obra culmina con un mensaje de esperanza: el amor verdadero y el arrepentimiento pueden vencer incluso a la muerte y conducir a la salvación.",
+    ],
+    gallery: [
+      {
+        src: "/images/CartelDonJuan.jpg",
+        alt: "Cartel de Don Juan Tenorio",
+      },
+      {
+        src: "/images/DonJuan1.jpg",
+        alt: "Fotografía de Don Juan Tenorio 1",
+      },
+      {
+        src: "/images/DonJuan2.jpg",
+        alt: "Fotografía de Don Juan Tenorio 2",
+      },
+      {
+        src: "/images/DonJuan3.jpg",
+        alt: "Fotografía de Don Juan Tenorio 3",
+      },
+      {
+        src: "/images/DonJuan4.jpg",
+        alt: "Fotografía de Don Juan Tenorio 4",
+      },
+      {
+        src: "/images/DonJuan5.jpg",
+        alt: "Fotografía de Don Juan Tenorio 5",
+      },
+      {
+        src: "/images/DonJuan6.jpg",
+        alt: "Fotografía de Don Juan Tenorio 6",
+      },
+      {
+        src: "/images/DonJuan7.jpg",
+        alt: "Fotografía de Don Juan Tenorio 7",
+      },
+      {
+        src: "/images/DonJuan8.jpg",
+        alt: "Fotografía de Don Juan Tenorio 8",
+      },
+      {
+        src: "/images/DonJuan9.jpg",
+        alt: "Fotografía de Don Juan Tenorio 9",
+      },
+      {
+        src: "/images/DonJuan10.jpg",
+        alt: "Fotografía de Don Juan Tenorio 10",
+      },
+      {
+        src: "/images/DonJuan11.jpg",
+        alt: "Fotografía de Don Juan Tenorio 11",
+      },
     ],
   },
 ];
@@ -142,6 +207,8 @@ export default function Shows() {
   const [selectedShow, setSelectedShow] = useState<Show | null>(null);
   const [activeTab, setActiveTab] = useState<"info" | "gallery">("info");
   const [notice, setNotice] = useState<string | null>(null);
+  const [expandedImage, setExpandedImage] =
+    useState<GalleryImage | null>(null);
 
   function openCatalog() {
     setCatalogOpen(true);
@@ -151,21 +218,31 @@ export default function Shows() {
   function closeCatalog() {
     setCatalogOpen(false);
     setSelectedShow(null);
+    setExpandedImage(null);
     setNotice(null);
   }
 
   function openShow(show: Show) {
     setSelectedShow(show);
     setActiveTab("info");
+    setExpandedImage(null);
   }
 
   function closeShow() {
     setSelectedShow(null);
+    setExpandedImage(null);
   }
 
   useEffect(() => {
     function handleEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
+      if (event.key !== "Escape") {
+        return;
+      }
+
+      if (expandedImage) {
+        setExpandedImage(null);
+        return;
+      }
 
       if (selectedShow) {
         closeShow();
@@ -177,7 +254,8 @@ export default function Shows() {
       }
     }
 
-    const modalOpen = catalogOpen || selectedShow !== null;
+    const modalOpen =
+      catalogOpen || selectedShow !== null || expandedImage !== null;
 
     if (modalOpen) {
       document.body.style.overflow = "hidden";
@@ -188,7 +266,7 @@ export default function Shows() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [catalogOpen, selectedShow]);
+  }, [catalogOpen, selectedShow, expandedImage]);
 
   return (
     <>
@@ -202,9 +280,7 @@ export default function Shows() {
               Escenario
             </p>
 
-            <h2 className="mt-4 section-title-light">
-              Espectáculos
-            </h2>
+            <h2 className="mt-4 section-title-light">Espectáculos</h2>
 
             <div className="gold-line" />
 
@@ -227,7 +303,7 @@ export default function Shows() {
                 }}
                 className="flex h-full flex-col overflow-hidden rounded-[22px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/55"
               >
-                <div className="flex h-[260px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[300px]">
+                <div className="flex h-[250px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[290px]">
                   <div className="text-center">
                     <div className="mx-auto mb-5 h-px w-16 bg-[#C8A96A]" />
 
@@ -348,7 +424,7 @@ export default function Shows() {
                 </p>
               </div>
 
-              <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
                 {shows.map((show) => (
                   <article
                     key={show.title}
@@ -357,13 +433,13 @@ export default function Shows() {
                     <button
                       type="button"
                       onClick={() => openShow(show)}
-                      className="relative h-[330px] w-full overflow-hidden bg-black sm:h-[390px]"
+                      className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[380px]"
                     >
                       <Image
                         src={show.poster}
                         alt={show.posterAlt}
                         fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
+                        sizes="(max-width: 768px) 100vw, 25vw"
                         className="object-contain p-5 transition duration-500 hover:scale-[1.03]"
                       />
                     </button>
@@ -377,9 +453,7 @@ export default function Shows() {
                         {show.title}
                       </h4>
 
-                      <p className="mt-2 text-[#C8A96A]">
-                        {show.author}
-                      </p>
+                      <p className="mt-2 text-[#C8A96A]">{show.author}</p>
 
                       <p className="mt-5 flex-1 leading-7 text-gray-300">
                         {show.summary}
@@ -494,7 +568,7 @@ export default function Shows() {
                     <div className="space-y-5">
                       {selectedShow.synopsis.map((paragraph, index) => (
                         <p
-                          key={index}
+                          key={`${selectedShow.title}-${index}`}
                           className="text-sm leading-7 text-gray-300 sm:text-base sm:leading-8"
                         >
                           {paragraph}
@@ -509,18 +583,21 @@ export default function Shows() {
                 <div className="p-5 sm:p-8 lg:p-10">
                   <div className="grid gap-6 md:grid-cols-2">
                     {selectedShow.gallery.map((image) => (
-                      <div
+                      <button
+                        type="button"
                         key={image.src}
-                        className="relative min-h-[420px] overflow-hidden rounded-[18px] border border-[#C8A96A]/20 bg-black sm:min-h-[560px]"
+                        onClick={() => setExpandedImage(image)}
+                        className="relative min-h-[400px] overflow-hidden rounded-[18px] border border-[#C8A96A]/20 bg-black transition hover:border-[#C8A96A]/60 sm:min-h-[540px]"
+                        aria-label={`Ampliar ${image.alt}`}
                       >
                         <Image
                           src={image.src}
                           alt={image.alt}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-contain p-3 sm:p-5"
+                          className="object-contain p-3 transition duration-500 hover:scale-[1.02] sm:p-5"
                         />
-                      </div>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -543,6 +620,50 @@ export default function Shows() {
                   Cerrar todo
                 </button>
               </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {expandedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
+                setExpandedImage(null);
+              }
+            }}
+            className="fixed inset-0 z-[130] flex items-center justify-center bg-black/95 p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label={expandedImage.alt}
+          >
+            <button
+              type="button"
+              onClick={() => setExpandedImage(null)}
+              className="absolute right-5 top-5 z-20 flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-black text-3xl text-white transition hover:border-[#C8A96A] hover:text-[#C8A96A]"
+              aria-label="Cerrar imagen ampliada"
+            >
+              ×
+            </button>
+
+            <motion.div
+              initial={{ scale: 0.94, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              className="relative h-[88vh] w-full max-w-6xl"
+            >
+              <Image
+                src={expandedImage.src}
+                alt={expandedImage.alt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain"
+              />
             </motion.div>
           </motion.div>
         )}

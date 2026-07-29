@@ -64,7 +64,7 @@ export default function Hero() {
 
             <br /><br />
 
-            En <span className="font-semibold text-white">ROLTEATRO</span>
+            En <span className="font-semibold text-white">ROLTEATRO </span>
             te ofrecemos mucho más que clases de interpretación:
             te invitamos a formar parte de una auténtica experiencia teatral.
 

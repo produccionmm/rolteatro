@@ -1,374 +1,312 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import {
+  FaEnvelope,
+  FaFacebookF,
+  FaGlobe,
+  FaInstagram,
+  FaPhoneAlt,
+  FaYoutube,
+} from "react-icons/fa";
+
+const contactEmail = "rolteatro@gmail.com";
 
 export default function ContactCTA() {
-  const [humanAnswer, setHumanAnswer] = useState("");
+  const [verification, setVerification] = useState("");
   const [error, setError] = useState("");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (humanAnswer.trim() !== "24") {
-      setError("La respuesta es incorrecta. Comprueba la operación.");
+    if (verification.trim() !== "24") {
+      setError("La respuesta de verificación no es correcta.");
       return;
     }
 
     setError("");
 
-    const form = new FormData(event.currentTarget);
+    const formData = new FormData(event.currentTarget);
 
-    const name = String(form.get("name") || "");
-    const email = String(form.get("email") || "");
-    const phone = String(form.get("phone") || "");
-    const message = String(form.get("message") || "");
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const phone = String(formData.get("phone") ?? "");
+    const message = String(formData.get("message") ?? "");
 
     const subject = encodeURIComponent(
-      `Nuevo mensaje desde la web de Rolteatro — ${name}`
+      `Consulta desde la web de ROLTEATRO - ${name}`,
     );
 
     const body = encodeURIComponent(
-      `Nombre: ${name}
-Correo electrónico: ${email}
-Teléfono: ${phone || "No indicado"}
-
-Mensaje:
-${message}`
+      `Nombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone}\n\nMensaje:\n${message}`,
     );
 
-    window.location.href =
-      `mailto:rolteatrocompaniadeteatro@gmail.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
   }
 
   return (
     <section
-      id="contact"
-      className="bg-gradient-to-b from-[#111111] to-[#070707] py-24 sm:py-28"
+      id="contacto"
+      className="relative overflow-hidden bg-[#0a0a0a] py-20 sm:py-24 lg:py-28"
     >
-      <div className="container-section">
-        {/* Cabecera */}
+      <div className="pointer-events-none absolute left-[-120px] top-20 h-80 w-80 rounded-full bg-[#8B1E1E]/15 blur-[130px]" />
 
-        <div className="mx-auto mb-16 max-w-3xl text-center">
-          <p className="font-semibold uppercase tracking-[0.45em] text-[#C8A96A]">
-            Inscríbete
+      <div className="pointer-events-none absolute bottom-[-120px] right-[-80px] h-96 w-96 rounded-full bg-[#C8A96A]/10 blur-[140px]" />
+
+      <div className="container-section relative z-10">
+        <div className="mx-auto mb-14 max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#C8A96A]">
+            Hablemos
           </p>
 
-          <h2 className="mt-4 section-title-light">
-            Contacta con nosotros
-          </h2>
+          <h2 className="mt-4 section-title-light">Contacto</h2>
 
           <div className="gold-line" />
 
-          <p className="mx-auto max-w-2xl leading-8 text-gray-300">
-            Escríbenos para solicitar información sobre nuestros cursos,
-            espectáculos, inscripciones o próximos proyectos.
+          <p className="mx-auto max-w-2xl text-base leading-7 text-gray-300 sm:text-lg sm:leading-8">
+            Contacta con ROLTEATRO para recibir información sobre cursos,
+            talleres, espectáculos y actividades teatrales.
           </p>
         </div>
 
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          {/* Información de contacto */}
-
-          <article className="rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] p-8 shadow-2xl shadow-black/30 sm:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C8A96A]">
-              Contacto
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-[24px] border border-[#C8A96A]/25 bg-gradient-to-br from-[#181818] to-[#101010] p-7 shadow-2xl shadow-black/30 sm:p-10">
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+              Información
             </p>
 
             <h3 className="mt-4 text-3xl font-bold text-white">
-              Hablemos de teatro
+              Ponte en contacto
             </h3>
 
-            <p className="mt-5 leading-8 text-gray-300">
-              Puedes contactar directamente con nosotros mediante correo,
-              teléfono o utilizando el formulario.
-            </p>
+            <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
 
-            <div className="mt-10 space-y-8">
-              {/* Correo */}
+            <div className="space-y-5">
+              <a
+                href={`mailto:${contactEmail}`}
+                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
+              >
+                <span className="mt-1 text-[#C8A96A]">
+                  <FaEnvelope />
+                </span>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C8A96A]/30 bg-[#C8A96A]/10 text-[#C8A96A]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M4 6h16v12H4z" />
-                    <path d="m4 7 8 6 8-6" />
-                  </svg>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white">
+                <span>
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Correo electrónico
-                  </p>
+                  </span>
 
-                  <a
-                    href="mailto:rolteatrocompaniadeteatro@gmail.com"
-                    className="mt-1 block break-all text-sm leading-6 text-gray-300 transition hover:text-[#C8A96A]"
-                  >
-                    rolteatrocompaniadeteatro@gmail.com
-                  </a>
-                </div>
-              </div>
+                  <span className="mt-2 block break-all text-white">
+                    {contactEmail}
+                  </span>
+                </span>
+              </a>
 
-              {/* Pedro */}
+              <a
+                href="tel:+34618872671"
+                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
+              >
+                <span className="mt-1 text-[#C8A96A]">
+                  <FaPhoneAlt />
+                </span>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C8A96A]/30 bg-[#C8A96A]/10 text-[#C8A96A]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 3h3l2 5-2 2a16 16 0 0 0 4 4l2-2 5 2v3a4 4 0 0 1-4 4C9.3 21 3 14.7 3 7a4 4 0 0 1 4-4Z" />
-                  </svg>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white">
+                <span>
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Pedro García
-                  </p>
+                  </span>
 
-                  <a
-                    href="tel:+34618872671"
-                    className="mt-1 block text-gray-300 transition hover:text-[#C8A96A]"
-                  >
-                    618 87 26 71
-                  </a>
-                </div>
-              </div>
+                  <span className="mt-2 block text-white">618 87 26 71</span>
+                </span>
+              </a>
 
-              {/* Juan */}
+              <a
+                href="tel:+34696901656"
+                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
+              >
+                <span className="mt-1 text-[#C8A96A]">
+                  <FaPhoneAlt />
+                </span>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C8A96A]/30 bg-[#C8A96A]/10 text-[#C8A96A]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  >
-                    <path d="M7 3h3l2 5-2 2a16 16 0 0 0 4 4l2-2 5 2v3a4 4 0 0 1-4 4C9.3 21 3 14.7 3 7a4 4 0 0 1 4-4Z" />
-                  </svg>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white">
+                <span>
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Juan A. García Casas
-                  </p>
+                  </span>
 
-                  <a
-                    href="tel:+34696901656"
-                    className="mt-1 block text-gray-300 transition hover:text-[#C8A96A]"
-                  >
-                    696 90 16 56
-                  </a>
-                </div>
-              </div>
+                  <span className="mt-2 block text-white">696 90 16 56</span>
+                </span>
+              </a>
 
-              {/* Web */}
+              <a
+                href="https://www.rolteatro.es"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
+              >
+                <span className="mt-1 text-[#C8A96A]">
+                  <FaGlobe />
+                </span>
 
-              <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#C8A96A]/30 bg-[#C8A96A]/10 text-[#C8A96A]">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    className="h-5 w-5"
-                    aria-hidden="true"
-                  >
-                    <circle cx="12" cy="12" r="9" />
-                    <path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18" />
-                  </svg>
-                </div>
-
-                <div>
-                  <p className="font-semibold text-white">
+                <span>
+                  <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Página web
-                  </p>
+                  </span>
 
-                  <a
-                    href="https://www.rolteatro.es"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mt-1 block text-gray-300 transition hover:text-[#C8A96A]"
-                  >
+                  <span className="mt-2 block text-white">
                     www.rolteatro.es
-                  </a>
-                </div>
-              </div>
+                  </span>
+                </span>
+              </a>
             </div>
 
-            {/* Redes sociales */}
-
-            <div className="mt-10 border-t border-white/10 pt-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-[#C8A96A]">
+            <div className="mt-8">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500">
                 Redes sociales
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-3">
-                <span className="rounded-full border border-white/15 px-5 py-2 text-sm text-gray-300">
-                  Instagram
-                </span>
+              <div className="mt-5 flex flex-wrap gap-4">
+                <a
+                  href="https://www.instagram.com/rol_teatro/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram de ROLTEATRO"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-[#C8A96A]/35 text-lg text-[#C8A96A] transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+                >
+                  <FaInstagram />
+                </a>
 
-                <span className="rounded-full border border-white/15 px-5 py-2 text-sm text-gray-300">
-                  Facebook
-                </span>
+                <a
+                  href="https://www.facebook.com/Rolteatro?locale=es_ES"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Facebook de ROLTEATRO"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-[#C8A96A]/35 text-lg text-[#C8A96A] transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+                >
+                  <FaFacebookF />
+                </a>
 
-                <span className="rounded-full border border-white/15 px-5 py-2 text-sm text-gray-300">
-                  YouTube
-                </span>
+                <a
+                  href="https://www.youtube.com/@Rolteatro-u7s"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="YouTube de ROLTEATRO"
+                  className="flex h-12 w-12 items-center justify-center rounded-full border border-[#C8A96A]/35 text-lg text-[#C8A96A] transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+                >
+                  <FaYoutube />
+                </a>
               </div>
             </div>
-          </article>
+          </div>
 
-          {/* Formulario */}
-
-          <article className="rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] p-8 shadow-2xl shadow-black/30 sm:p-10">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#C8A96A]">
-              Formulario
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] p-7 shadow-2xl shadow-black/30 sm:p-10"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+              Escríbenos
             </p>
 
             <h3 className="mt-4 text-3xl font-bold text-white">
-              Envíanos un mensaje
+              Envíanos tu consulta
             </h3>
 
-            <form
-              onSubmit={handleSubmit}
-              className="mt-8 space-y-5"
-            >
-              {/* Nombre */}
+            <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
 
-              <div>
-                <label
-                  htmlFor="name"
-                  className="mb-2 block text-sm font-semibold text-gray-200"
-                >
-                  Nombre *
-                </label>
+            <div className="grid gap-5 sm:grid-cols-2">
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-gray-300">
+                  Nombre
+                </span>
 
                 <input
-                  id="name"
-                  name="name"
                   type="text"
+                  name="name"
                   required
-                  placeholder="Escribe tu nombre"
-                  className="w-full rounded-xl border border-white/10 bg-[#0D0D0D] px-5 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A] focus:ring-2 focus:ring-[#C8A96A]/20"
+                  autoComplete="name"
+                  className="min-h-12 w-full rounded-xl border border-white/15 bg-black/30 px-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A]"
+                  placeholder="Tu nombre"
                 />
-              </div>
+              </label>
 
-              {/* Correo */}
-
-              <div>
-                <label
-                  htmlFor="email"
-                  className="mb-2 block text-sm font-semibold text-gray-200"
-                >
-                  Correo electrónico *
-                </label>
+              <label className="block">
+                <span className="mb-2 block text-sm font-semibold text-gray-300">
+                  Correo electrónico
+                </span>
 
                 <input
-                  id="email"
-                  name="email"
                   type="email"
+                  name="email"
                   required
-                  placeholder="ejemplo@correo.com"
-                  className="w-full rounded-xl border border-white/10 bg-[#0D0D0D] px-5 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A] focus:ring-2 focus:ring-[#C8A96A]/20"
+                  autoComplete="email"
+                  className="min-h-12 w-full rounded-xl border border-white/15 bg-black/30 px-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A]"
+                  placeholder="tu@email.com"
                 />
-              </div>
+              </label>
+            </div>
 
-              {/* Teléfono */}
+            <label className="mt-5 block">
+              <span className="mb-2 block text-sm font-semibold text-gray-300">
+                Teléfono
+              </span>
 
-              <div>
-                <label
-                  htmlFor="phone"
-                  className="mb-2 block text-sm font-semibold text-gray-200"
-                >
-                  Número de teléfono
-                </label>
+              <input
+                type="tel"
+                name="phone"
+                autoComplete="tel"
+                className="min-h-12 w-full rounded-xl border border-white/15 bg-black/30 px-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A]"
+                placeholder="Tu teléfono"
+              />
+            </label>
 
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="Tu número de teléfono"
-                  className="w-full rounded-xl border border-white/10 bg-[#0D0D0D] px-5 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A] focus:ring-2 focus:ring-[#C8A96A]/20"
-                />
-              </div>
+            <label className="mt-5 block">
+              <span className="mb-2 block text-sm font-semibold text-gray-300">
+                Mensaje
+              </span>
 
-              {/* Mensaje */}
+              <textarea
+                name="message"
+                required
+                rows={7}
+                className="w-full resize-none rounded-xl border border-white/15 bg-black/30 px-4 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A]"
+                placeholder="Cuéntanos en qué podemos ayudarte"
+              />
+            </label>
 
-              <div>
-                <label
-                  htmlFor="message"
-                  className="mb-2 block text-sm font-semibold text-gray-200"
-                >
-                  Mensaje *
-                </label>
+            <label className="mt-5 block">
+              <span className="mb-2 block text-sm font-semibold text-gray-300">
+                Verificación: 27 - 3 = ?
+              </span>
 
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={6}
-                  placeholder="Cuéntanos en qué podemos ayudarte"
-                  className="w-full resize-y rounded-xl border border-white/10 bg-[#0D0D0D] px-5 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A] focus:ring-2 focus:ring-[#C8A96A]/20"
-                />
-              </div>
+              <input
+                type="text"
+                inputMode="numeric"
+                value={verification}
+                onChange={(event) => setVerification(event.target.value)}
+                required
+                className="min-h-12 w-full rounded-xl border border-white/15 bg-black/30 px-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A]"
+                placeholder="Escribe el resultado"
+              />
+            </label>
 
-              {/* Comprobación humana */}
-
-              <div>
-                <label
-                  htmlFor="human"
-                  className="mb-2 block text-sm font-semibold text-gray-200"
-                >
-                  Si eres humano, resuelve la operación: 27 − 3 = ?
-                </label>
-
-                <input
-                  id="human"
-                  name="human"
-                  type="number"
-                  required
-                  value={humanAnswer}
-                  onChange={(event) => {
-                    setHumanAnswer(event.target.value);
-                    setError("");
-                  }}
-                  placeholder="Escribe el resultado"
-                  className="w-full rounded-xl border border-white/10 bg-[#0D0D0D] px-5 py-4 text-white outline-none transition placeholder:text-gray-600 focus:border-[#C8A96A] focus:ring-2 focus:ring-[#C8A96A]/20"
-                />
-
-                {error && (
-                  <p className="mt-2 text-sm text-red-400">
-                    {error}
-                  </p>
-                )}
-              </div>
-
-              <button
-                type="submit"
-                className="mt-3 inline-flex min-h-14 w-full items-center justify-center rounded-xl bg-[#8B1E1E] px-8 py-4 font-bold uppercase tracking-[0.2em] text-white transition duration-300 hover:-translate-y-1 hover:bg-[#6D1515] hover:shadow-[0_12px_30px_rgba(139,30,30,0.35)] sm:w-auto"
+            {error && (
+              <p
+                role="alert"
+                className="mt-4 rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-sm text-red-300"
               >
-                Enviar mensaje
-              </button>
-
-              <p className="text-sm leading-6 text-gray-500">
-                Al pulsar el botón se abrirá tu aplicación de correo con el
-                mensaje preparado para enviarlo a Rolteatro.
+                {error}
               </p>
-            </form>
-          </article>
+            )}
+
+            <button
+              type="submit"
+              className="mt-7 inline-flex min-h-13 w-full items-center justify-center rounded-xl bg-[#8B1E1E] px-7 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#6D1515]"
+            >
+              Enviar consulta
+            </button>
+
+            <p className="mt-4 text-center text-xs leading-5 text-gray-500">
+              Al pulsar el botón se abrirá tu programa de correo con el mensaje
+              preparado para enviarlo a {contactEmail}.
+            </p>
+          </form>
         </div>
       </div>
     </section>
