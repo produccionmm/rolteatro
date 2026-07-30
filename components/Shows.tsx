@@ -32,7 +32,17 @@ const categories: Category[] = [
     text: "Conoce algunas de las producciones que ROLTEATRO ha llevado a escena a lo largo de su trayectoria.",
     button: "Imágenes",
   },
-
+  {
+    title: "En cartel",
+    text: "Consulta los espectáculos que actualmente forman parte de la programación de ROLTEATRO.",
+    button: "Más información",
+  },
+  {
+    title: "Próximos montajes",
+    text: "Descubre los nuevos proyectos y producciones en preparación que llegarán próximamente.",
+    button: "Más información",
+  },
+];
 const shows: Show[] = [
   {
     title: "Petición de mano & El oso",
@@ -292,15 +302,29 @@ export default function Shows() {
                 }}
                 className="flex h-full flex-col overflow-hidden rounded-[22px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/55"
               >
-                <div className="flex h-[250px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[290px]">
-                  <div className="text-center">
-                    <div className="mx-auto mb-5 h-px w-16 bg-[#C8A96A]" />
+               {category.title === "Montajes" ? (
+  <div className="relative h-[250px] overflow-hidden border-b border-[#C8A96A]/15 sm:h-[290px]">
+    <Image
+      src="/images/FondoMontaje.jpeg"
+      alt="Montajes de Rolteatro"
+      fill
+      sizes="(max-width: 768px) 100vw, 33vw"
+      className="object-cover transition duration-700 hover:scale-105"
+    />
 
-                    <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
-                      {category.title}
-                    </p>
-                  </div>
-                </div>
+    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
+  </div>
+) : (
+  <div className="flex h-[250px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[290px]">
+    <div className="text-center">
+      <div className="mx-auto mb-5 h-px w-16 bg-[#C8A96A]" />
+
+      <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+        {category.title}
+      </p>
+    </div>
+  </div>
+)}
 
                 <div className="flex flex-1 flex-col p-7 sm:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8A96A]">

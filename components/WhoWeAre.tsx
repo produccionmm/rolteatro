@@ -56,7 +56,7 @@ export default function WhoWeAre() {
           <div className="gold-line" />
 
           <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-300">
-            ROLTEATRO es una compañía y escuela de artes escénicas.
+            ROLTEATRO es una Compañía y escuela de artes escénicas, con un proyecto que nace de la mano de Pedro García en el año 2016 para la formación, creación y exhibición, donde se ofrece un espacio donde cualquier persona puede aprender, experimentar y disfrutar de las artes escénicas.
           </p>
         </motion.div>
 
