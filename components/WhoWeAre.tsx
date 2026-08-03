@@ -32,7 +32,7 @@ const productions = [
 export default function WhoWeAre() {
   return (
     <section
-      id="quienes-somos"
+      id="who-we-are"
       className="relative overflow-hidden bg-[#0b0b0b] py-20 sm:py-24 lg:py-28"
     >
       <div className="pointer-events-none absolute left-0 top-0 h-80 w-80 rounded-full bg-[#8B1E1E]/10 blur-[120px]" />

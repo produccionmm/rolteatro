@@ -1,57 +1,90 @@
 import {
-  FaInstagram,
-  FaFacebook,
   FaEnvelope,
-  FaPhone,
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
 } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-black py-16 text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-3">
+    <footer className="border-t border-[#C8A96A]/20 bg-[#050505] text-white">
+      <div className="container-section grid gap-10 py-14 md:grid-cols-3">
+        {/* Rolteatro */}
 
         <div>
-          <h3 className="text-3xl font-bold">
-            <span className="text-red-600">ROL</span>TEATRO
+          <h2 className="text-2xl font-extrabold tracking-wide">
+            <span className="text-white">ROL</span>
+            <span className="text-[#C8A96A]">TEATRO</span>
+          </h2>
+
+          <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
+            Compañía y escuela de artes escénicas dedicada a la formación,
+            creación y exhibición teatral.
+          </p>
+        </div>
+
+        {/* Contacto */}
+
+        <div>
+          <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
+            Contacto
           </h3>
 
-          <p className="mt-5 text-gray-400">
-            Escuela y compañía de teatro donde la creatividad cobra vida.
-          </p>
+          <a
+            href="mailto:rolteatro@gmail.com"
+            className="mt-5 flex items-center gap-3 text-sm text-gray-300 transition hover:text-[#C83B3B]"
+          >
+            <FaEnvelope className="text-[#C8A96A]" />
+            rolteatro@gmail.com
+          </a>
         </div>
 
-        <div>
-          <h4 className="mb-5 text-xl font-bold">
-            Contacto
-          </h4>
-
-          <p className="mb-3 flex items-center gap-3">
-            <FaEnvelope />
-            info@rolteatro.es
-          </p>
-
-          <p className="flex items-center gap-3">
-            <FaPhone />
-            +34 600 000 000
-          </p>
-        </div>
+        {/* Redes */}
 
         <div>
-          <h4 className="mb-5 text-xl font-bold">
+          <h3 className="text-sm font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
             Síguenos
-          </h4>
+          </h3>
 
-          <div className="flex gap-5 text-3xl text-red-600">
-            <FaInstagram className="cursor-pointer hover:scale-110 transition" />
-            <FaFacebook className="cursor-pointer hover:scale-110 transition" />
+          <div className="mt-5 flex gap-4">
+            <a
+              href="https://www.instagram.com/rol_teatro/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram de Rolteatro"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-lg text-white transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+            >
+              <FaInstagram />
+            </a>
+
+            <a
+              href="https://www.facebook.com/Rolteatro?locale=es_ES"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Facebook de Rolteatro"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-lg text-white transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+            >
+              <FaFacebookF />
+            </a>
+
+            <a
+              href="https://www.youtube.com/@Rolteatro-u7s"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube de Rolteatro"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 text-lg text-white transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
+            >
+              <FaYoutube />
+            </a>
           </div>
         </div>
-
       </div>
 
-      <p className="mt-14 text-center text-sm text-gray-500">
-        © 2026 Rolteatro · Todos los derechos reservados.
-      </p>
+      <div className="border-t border-white/10">
+        <div className="container-section py-6 text-center text-xs text-gray-500">
+          © 2026 ROLTEATRO · Todos los derechos reservados.
+        </div>
+      </div>
     </footer>
   );
 }

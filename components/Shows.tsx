@@ -24,25 +24,33 @@ type Category = {
   title: string;
   text: string;
   button: string;
+  image?: string;
+  action: "catalog" | "upcoming" | "notice";
 };
 
 const categories: Category[] = [
   {
     title: "Montajes",
     text: "Conoce algunas de las producciones que ROLTEATRO ha llevado a escena a lo largo de su trayectoria.",
-    button: "Imágenes",
+    button: "Ver montajes",
+    image: "/images/FondoMontaje.jpeg",
+    action: "catalog",
   },
   {
     title: "En cartel",
     text: "Consulta los espectáculos que actualmente forman parte de la programación de ROLTEATRO.",
     button: "Más información",
+    action: "notice",
   },
   {
     title: "Próximos montajes",
     text: "Descubre los nuevos proyectos y producciones en preparación que llegarán próximamente.",
     button: "Más información",
+    image: "/images/ProxMontajes.jpg",
+    action: "upcoming",
   },
 ];
+
 const shows: Show[] = [
   {
     title: "Petición de mano & El oso",
@@ -201,8 +209,29 @@ const shows: Show[] = [
   },
 ];
 
+const upcomingShows: Show[] = [
+  {
+    title: "El vecino",
+    author: "ROLTEATRO",
+    year: "Próximamente",
+    poster: "/images/CartelVecinos.jpeg",
+    posterAlt: "Cartel de El vecino",
+    summary: "Próxima producción teatral de ROLTEATRO.",
+    synopsis: [
+      "Próximamente ampliaremos la información y la sinopsis de este montaje.",
+    ],
+    gallery: [
+      {
+        src: "/images/CartelVecinos.jpeg",
+        alt: "Cartel de El vecino",
+      },
+    ],
+  },
+];
+
 export default function Shows() {
   const [catalogOpen, setCatalogOpen] = useState(false);
+  const [upcomingOpen, setUpcomingOpen] = useState(false);
   const [selectedShow, setSelectedShow] = useState<Show | null>(null);
   const [activeTab, setActiveTab] = useState<"info" | "gallery">("info");
   const [notice, setNotice] = useState<string | null>(null);
@@ -211,19 +240,27 @@ export default function Shows() {
 
   function openCatalog() {
     setCatalogOpen(true);
+    setUpcomingOpen(false);
     setNotice(null);
   }
 
-  function closeCatalog() {
+  function openUpcoming() {
+    setUpcomingOpen(true);
     setCatalogOpen(false);
+    setNotice(null);
+  }
+
+  function closeAllCatalogs() {
+    setCatalogOpen(false);
+    setUpcomingOpen(false);
     setSelectedShow(null);
     setExpandedImage(null);
     setNotice(null);
   }
 
-  function openShow(show: Show) {
+  function openShow(show: Show, tab: "info" | "gallery" = "info") {
     setSelectedShow(show);
-    setActiveTab("info");
+    setActiveTab(tab);
     setExpandedImage(null);
   }
 
@@ -248,13 +285,16 @@ export default function Shows() {
         return;
       }
 
-      if (catalogOpen) {
-        closeCatalog();
+      if (catalogOpen || upcomingOpen) {
+        closeAllCatalogs();
       }
     }
 
     const modalOpen =
-      catalogOpen || selectedShow !== null || expandedImage !== null;
+      catalogOpen ||
+      upcomingOpen ||
+      selectedShow !== null ||
+      expandedImage !== null;
 
     if (modalOpen) {
       document.body.style.overflow = "hidden";
@@ -265,7 +305,7 @@ export default function Shows() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [catalogOpen, selectedShow, expandedImage]);
+  }, [catalogOpen, upcomingOpen, selectedShow, expandedImage]);
 
   return (
     <>
@@ -302,29 +342,29 @@ export default function Shows() {
                 }}
                 className="flex h-full flex-col overflow-hidden rounded-[22px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/55"
               >
-               {category.title === "Montajes" ? (
-  <div className="relative h-[250px] overflow-hidden border-b border-[#C8A96A]/15 sm:h-[290px]">
-    <Image
-      src="/images/FondoMontaje.jpeg"
-      alt="Montajes de Rolteatro"
-      fill
-      sizes="(max-width: 768px) 100vw, 33vw"
-      className="object-cover transition duration-700 hover:scale-105"
-    />
+                {category.image ? (
+                  <div className="relative h-[250px] overflow-hidden border-b border-[#C8A96A]/15 sm:h-[290px]">
+                    <Image
+                      src={category.image}
+                      alt={`Imagen de ${category.title}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition duration-700 hover:scale-105"
+                    />
 
-    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10" />
-  </div>
-) : (
-  <div className="flex h-[250px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[290px]">
-    <div className="text-center">
-      <div className="mx-auto mb-5 h-px w-16 bg-[#C8A96A]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10" />
+                  </div>
+                ) : (
+                  <div className="flex h-[250px] items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#111111] sm:h-[290px]">
+                    <div className="text-center">
+                      <div className="mx-auto mb-5 h-px w-16 bg-[#C8A96A]" />
 
-      <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
-        {category.title}
-      </p>
-    </div>
-  </div>
-)}
+                      <p className="text-sm uppercase tracking-[0.25em] text-gray-400">
+                        {category.title}
+                      </p>
+                    </div>
+                  </div>
+                )}
 
                 <div className="flex flex-1 flex-col p-7 sm:p-8">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[#C8A96A]">
@@ -344,11 +384,17 @@ export default function Shows() {
                   <button
                     type="button"
                     onClick={() => {
-                      if (category.title === "Montajes") {
+                      if (category.action === "catalog") {
                         openCatalog();
-                      } else {
-                        setNotice(category.title);
+                        return;
                       }
+
+                      if (category.action === "upcoming") {
+                        openUpcoming();
+                        return;
+                      }
+
+                      setNotice(category.title);
                     }}
                     className="mt-8 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#8B1E1E] px-6 py-3 text-sm font-bold uppercase tracking-[0.15em] text-white transition duration-300 hover:bg-[#6D1515] sm:w-auto"
                   >
@@ -391,100 +437,27 @@ export default function Shows() {
 
       <AnimatePresence>
         {catalogOpen && !selectedShow && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onMouseDown={(event) => {
-              if (event.target === event.currentTarget) {
-                closeCatalog();
-              }
-            }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md sm:p-6"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Catálogo de montajes"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.97 }}
-              className="relative max-h-[94vh] w-full max-w-7xl overflow-y-auto rounded-[22px] border border-[#C8A96A]/35 bg-[#101010] p-5 shadow-[0_30px_100px_rgba(0,0,0,0.8)] sm:p-8 lg:p-10"
-            >
-              <button
-                type="button"
-                onClick={closeCatalog}
-                className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black text-2xl text-white transition hover:border-[#C8A96A] hover:text-[#C8A96A]"
-                aria-label="Cerrar catálogo"
-              >
-                ×
-              </button>
+          <CatalogModal
+            title="Montajes"
+            description="Selecciona una obra para consultar el cartel, la información y las fotografías disponibles."
+            shows={shows}
+            onClose={closeAllCatalogs}
+            onOpenInfo={(show) => openShow(show, "info")}
+            onOpenGallery={(show) => openShow(show, "gallery")}
+          />
+        )}
+      </AnimatePresence>
 
-              <div className="mx-auto mb-10 max-w-3xl pr-12 text-center">
-                <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#C8A96A]">
-                  Rolteatro
-                </p>
-
-                <h3 className="mt-4 text-3xl font-bold text-white sm:text-5xl">
-                  Montajes
-                </h3>
-
-                <div className="gold-line" />
-
-                <p className="leading-7 text-gray-300 sm:text-lg">
-                  Selecciona una obra para consultar el cartel, la información
-                  y las fotografías disponibles.
-                </p>
-              </div>
-
-              <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-4">
-                {shows.map((show) => (
-                  <article
-                    key={show.title}
-                    className="flex flex-col overflow-hidden rounded-[20px] border border-[#C8A96A]/20 bg-[#171717]"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => openShow(show)}
-                      className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[380px]"
-                    >
-                      <Image
-                        src={show.poster}
-                        alt={show.posterAlt}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 25vw"
-                        className="object-contain p-5 transition duration-500 hover:scale-[1.03]"
-                      />
-                    </button>
-
-                    <div className="flex flex-1 flex-col p-6">
-                      <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
-                        {show.year}
-                      </p>
-
-                      <h4 className="mt-3 text-2xl font-bold text-white">
-                        {show.title}
-                      </h4>
-
-                      <p className="mt-2 text-[#C8A96A]">{show.author}</p>
-
-                      <p className="mt-5 flex-1 leading-7 text-gray-300">
-                        {show.summary}
-                      </p>
-
-                      <button
-                        type="button"
-                        onClick={() => openShow(show)}
-                        className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#8B1E1E] px-6 text-sm font-bold uppercase tracking-[0.15em] text-white transition hover:bg-[#6D1515]"
-                      >
-                        Más información
-                      </button>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
+      <AnimatePresence>
+        {upcomingOpen && !selectedShow && (
+          <CatalogModal
+            title="Próximos montajes"
+            description="Consulta la próxima producción de ROLTEATRO."
+            shows={upcomingShows}
+            onClose={closeAllCatalogs}
+            onOpenInfo={(show) => openShow(show, "info")}
+            onOpenGallery={(show) => openShow(show, "gallery")}
+          />
         )}
       </AnimatePresence>
 
@@ -509,7 +482,7 @@ export default function Shows() {
                 type="button"
                 onClick={closeShow}
                 className="absolute right-4 top-4 z-30 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black text-2xl text-white transition hover:border-[#C8A96A] hover:text-[#C8A96A]"
-                aria-label="Volver a montajes"
+                aria-label="Volver"
               >
                 ×
               </button>
@@ -622,12 +595,12 @@ export default function Shows() {
                   onClick={closeShow}
                   className="inline-flex min-h-12 items-center justify-center rounded-xl border border-[#C8A96A] px-7 text-sm font-bold uppercase tracking-[0.15em] text-[#C8A96A] transition hover:bg-[#C8A96A] hover:text-black"
                 >
-                  Volver a montajes
+                  Volver
                 </button>
 
                 <button
                   type="button"
-                  onClick={closeCatalog}
+                  onClick={closeAllCatalogs}
                   className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/20 px-7 text-sm font-bold uppercase tracking-[0.15em] text-white transition hover:border-[#C83B3B] hover:text-[#C83B3B]"
                 >
                   Cerrar todo
@@ -682,5 +655,123 @@ export default function Shows() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+type CatalogModalProps = {
+  title: string;
+  description: string;
+  shows: Show[];
+  onClose: () => void;
+  onOpenInfo: (show: Show) => void;
+  onOpenGallery: (show: Show) => void;
+};
+
+function CatalogModal({
+  title,
+  description,
+  shows,
+  onClose,
+  onOpenInfo,
+  onOpenGallery,
+}: CatalogModalProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-3 backdrop-blur-md sm:p-6"
+      role="dialog"
+      aria-modal="true"
+      aria-label={title}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 30, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 20, scale: 0.97 }}
+        className="relative max-h-[94vh] w-full max-w-7xl overflow-y-auto rounded-[22px] border border-[#C8A96A]/35 bg-[#101010] p-5 shadow-[0_30px_100px_rgba(0,0,0,0.8)] sm:p-8 lg:p-10"
+      >
+        <button
+          type="button"
+          onClick={onClose}
+          className="absolute right-4 top-4 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black text-2xl text-white transition hover:border-[#C8A96A] hover:text-[#C8A96A]"
+          aria-label={`Cerrar ${title}`}
+        >
+          ×
+        </button>
+
+        <div className="mx-auto mb-10 max-w-3xl pr-12 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.4em] text-[#C8A96A]">
+            Rolteatro
+          </p>
+
+          <h3 className="mt-4 text-3xl font-bold text-white sm:text-5xl">
+            {title}
+          </h3>
+
+          <div className="gold-line" />
+
+          <p className="leading-7 text-gray-300 sm:text-lg">{description}</p>
+        </div>
+
+        <div
+          className={`grid gap-7 ${
+            shows.length === 1
+              ? "mx-auto max-w-md grid-cols-1"
+              : "md:grid-cols-2 xl:grid-cols-4"
+          }`}
+        >
+          {shows.map((show) => (
+            <article
+              key={show.title}
+              className="flex flex-col overflow-hidden rounded-[20px] border border-[#C8A96A]/20 bg-[#171717]"
+            >
+              <button
+                type="button"
+                onClick={() => onOpenInfo(show)}
+                className="relative h-[320px] w-full overflow-hidden bg-black sm:h-[380px]"
+              >
+                <Image
+                  src={show.poster}
+                  alt={show.posterAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                  className="object-contain p-5 transition duration-500 hover:scale-[1.03]"
+                />
+              </button>
+
+              <div className="flex flex-1 flex-col p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
+                  {show.year}
+                </p>
+
+                <h4 className="mt-3 text-2xl font-bold text-white">
+                  {show.title}
+                </h4>
+
+                <p className="mt-2 text-[#C8A96A]">{show.author}</p>
+
+                <p className="mt-5 flex-1 leading-7 text-gray-300">
+                  {show.summary}
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => onOpenGallery(show)}
+                  className="mt-7 inline-flex min-h-12 items-center justify-center rounded-xl bg-[#8B1E1E] px-6 text-sm font-bold uppercase tracking-[0.15em] text-white transition hover:bg-[#6D1515]"
+                >
+                  Imágenes
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
