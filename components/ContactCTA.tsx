@@ -72,8 +72,6 @@ export default function ContactCTA() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          {/* Datos */}
-
           <article className="rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] p-7 shadow-2xl shadow-black/30 sm:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
               Información
@@ -86,8 +84,6 @@ export default function ContactCTA() {
             <div className="my-7 h-[2px] w-16 bg-[#C8A96A]" />
 
             <div className="space-y-5">
-              {/* 1. Correo */}
-
               <a
                 href="mailto:rolteatro@gmail.com"
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
@@ -105,8 +101,6 @@ export default function ContactCTA() {
                 </span>
               </a>
 
-              {/* 2. Juan */}
-
               <a
                 href="tel:+34696901656"
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
@@ -115,7 +109,7 @@ export default function ContactCTA() {
 
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
-                    Juan A. García Casas
+                    Juan Casas
                   </span>
 
                   <span className="mt-2 block text-white">
@@ -123,8 +117,6 @@ export default function ContactCTA() {
                   </span>
                 </span>
               </a>
-
-              {/* 3. Pedro */}
 
               <a
                 href="tel:+34618872671"
@@ -142,8 +134,6 @@ export default function ContactCTA() {
                   </span>
                 </span>
               </a>
-
-              {/* 4. Web */}
 
               <a
                 href="https://www.rolteatro.es"
@@ -203,8 +193,6 @@ export default function ContactCTA() {
               </div>
             </div>
           </article>
-
-          {/* Formulario */}
 
           <form
             onSubmit={handleSubmit}

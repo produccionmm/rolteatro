@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function About() {
@@ -22,19 +23,25 @@ export default function About() {
         </div>
 
         <div className="grid gap-10 lg:grid-cols-2">
-          {/* Escuela */}
+          {/* ESCUELA */}
 
           <motion.article
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="overflow-hidden rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/50"
+            className="group overflow-hidden rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/50"
           >
-            <div className="flex h-72 items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#151515]">
-              <span className="text-lg text-gray-400">
-                Imagen Escuela
-              </span>
+            <div className="relative h-72 overflow-hidden border-b border-[#C8A96A]/15">
+              <Image
+                src="/images/ImagenEscuela.jpg"
+                alt="Escuela Rolteatro"
+                fill
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
             </div>
 
             <div className="p-10">
@@ -53,25 +60,34 @@ export default function About() {
                 escénico con profesionales en activo.
               </p>
 
-              <a href="#courses" className="btn-primary mt-10">
+              <a
+                href="#courses"
+                className="btn-primary mt-10"
+              >
                 Conocer los cursos
               </a>
             </div>
           </motion.article>
 
-          {/* Compañía */}
+          {/* COMPAÑÍA */}
 
           <motion.article
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="overflow-hidden rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/50"
+            className="group overflow-hidden rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/50"
           >
-            <div className="flex h-72 items-center justify-center border-b border-[#C8A96A]/15 bg-gradient-to-br from-[#262626] to-[#151515]">
-              <span className="text-lg text-gray-400">
-                Imagen Compañía
-              </span>
+            <div className="relative h-72 overflow-hidden border-b border-[#C8A96A]/15">
+              <Image
+                src="/images/ImagenCompania.jpg"
+                alt="Compañía Rolteatro"
+                fill
+                sizes="(max-width:1024px) 100vw, 50vw"
+                className="object-cover transition duration-700 group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
             </div>
 
             <div className="p-10">
@@ -91,7 +107,10 @@ export default function About() {
                 originales y de calidad.
               </p>
 
-              <a href="#shows" className="btn-primary mt-10">
+              <a
+                href="#shows"
+                className="btn-primary mt-10"
+              >
                 Ver espectáculos
               </a>
             </div>
