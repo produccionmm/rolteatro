@@ -4,11 +4,12 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { categories, shows, upcomingShows } from "@/components/show/data";
+import { categories, currentShows, shows, upcomingShows } from "@/components/show/data";
 import type { GalleryImage, Show } from "@/components/show/types";
 
 export default function Shows() {
   const [catalogOpen, setCatalogOpen] = useState(false);
+  const [currentOpen, setCurrentOpen] = useState(false);
   const [upcomingOpen, setUpcomingOpen] = useState(false);
   const [selectedShow, setSelectedShow] = useState<Show | null>(null);
   const [activeTab, setActiveTab] = useState<"info" | "gallery">("info");
@@ -18,6 +19,14 @@ export default function Shows() {
 
   function openCatalog() {
     setCatalogOpen(true);
+    setCurrentOpen(false);
+    setUpcomingOpen(false);
+    setNotice(null);
+  }
+
+  function openCurrent() {
+    setCurrentOpen(true);
+    setCatalogOpen(false);
     setUpcomingOpen(false);
     setNotice(null);
   }
@@ -25,11 +34,13 @@ export default function Shows() {
   function openUpcoming() {
     setUpcomingOpen(true);
     setCatalogOpen(false);
+    setCurrentOpen(false);
     setNotice(null);
   }
 
   function closeAllCatalogs() {
     setCatalogOpen(false);
+    setCurrentOpen(false);
     setUpcomingOpen(false);
     setSelectedShow(null);
     setExpandedImage(null);
@@ -63,13 +74,14 @@ export default function Shows() {
         return;
       }
 
-      if (catalogOpen || upcomingOpen) {
+      if (catalogOpen || currentOpen || upcomingOpen) {
         closeAllCatalogs();
       }
     }
 
     const modalOpen =
       catalogOpen ||
+      currentOpen ||
       upcomingOpen ||
       selectedShow !== null ||
       expandedImage !== null;
@@ -83,7 +95,7 @@ export default function Shows() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleEscape);
     };
-  }, [catalogOpen, upcomingOpen, selectedShow, expandedImage]);
+  }, [catalogOpen, currentOpen, upcomingOpen, selectedShow, expandedImage]);
 
   return (
     <>
@@ -167,6 +179,11 @@ export default function Shows() {
                         return;
                       }
 
+                      if (category.action === "current") {
+                        openCurrent();
+                        return;
+                      }
+
                       if (category.action === "upcoming") {
                         openUpcoming();
                         return;
@@ -219,6 +236,19 @@ export default function Shows() {
             title="Montajes"
             description="Selecciona una obra para consultar el cartel, la información y las fotografías disponibles."
             shows={shows}
+            onClose={closeAllCatalogs}
+            onOpenInfo={(show) => openShow(show, "info")}
+            onOpenGallery={(show) => openShow(show, "gallery")}
+          />
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {currentOpen && !selectedShow && (
+          <CatalogModal
+            title="En cartel"
+            description="Consulta los espectáculos que actualmente forman parte de la programación de ROLTEATRO."
+            shows={currentShows}
             onClose={closeAllCatalogs}
             onOpenInfo={(show) => openShow(show, "info")}
             onOpenGallery={(show) => openShow(show, "gallery")}

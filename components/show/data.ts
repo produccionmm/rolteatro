@@ -12,7 +12,8 @@ export const categories: Category[] = [
     title: "En cartel",
     text: "Consulta los espectáculos que actualmente forman parte de la programación de ROLTEATRO.",
     button: "Más información",
-    action: "notice",
+    image: "/images/EnCartel.jpg",
+    action: "current",
   },
   {
     title: "Próximos montajes",
@@ -27,7 +28,7 @@ export const shows: Show[] = [
   {
     title: "Petición de mano & El oso",
     author: "Antón Chéjov",
-    year: "2019",
+    year: "2020",
     poster: "/images/Peticion.jpg",
     posterAlt: "Cartel de Petición de mano y El oso",
     summary:
@@ -50,7 +51,7 @@ export const shows: Show[] = [
   {
     title: "El canto del cisne",
     author: "Antón Chéjov",
-    year: "2020",
+    year: "2019",
     poster: "/images/CartelCisne.jpg",
     posterAlt: "Cartel de El canto del cisne",
     summary:
@@ -187,7 +188,7 @@ export const shows: Show[] = [
   {
     title: "Lorca",
     author: "Federico García Lorca",
-    year: "2023",
+    year: "2024",
     poster: "/images/CartelLorca.jpeg",
     posterAlt: "Cartel del montaje Lorca",
     summary:
@@ -228,7 +229,7 @@ export const shows: Show[] = [
   {
     title: "Lapislázuli",
     author: "José Luis Alonso de Santos",
-    year: "2026",
+    year: "2025",
     poster: "/images/CartelLapis.jpg",
     posterAlt: "Cartel de Lapislázuli",
     summary: "Una conmovedora y divertida propuesta inspirada en la mirada cercana y vital de José Luis Alonso de Santos.",
@@ -252,7 +253,72 @@ export const shows: Show[] = [
   },
 ];
 
+export const currentShows: Show[] = [
+  {
+    title: "ACTÚA",
+    author: "ROLTEATRO",
+    year: "En cartel",
+    poster: "/images/CartelActua2.jpg",
+    posterAlt: "Cartel de ACTÚA",
+    summary:
+      "Un recorrido por el alma humana a través de trece autores y textos esenciales de la historia teatral.",
+    synopsis: [
+      "ACTÚA no es solo una representación; es un recorrido por el alma humana a través de los textos que han definido nuestra historia teatral. En este montaje de Rolteatro, nos sumergimos en un juego de espejos donde la realidad y la ficción se confunden, guiados por la palabra y, en definitiva, por la verdad del hecho teatral.",
+      "El viaje comienza con el rigor de Hamlet, de William Shakespeare, y sus consejos a los cómicos, para luego transitar por el ingenio de Práxedes en Eloísa está debajo de un almendro, de Enrique Jardiel Poncela, y la fragilidad de Blanche en Un tranvía llamado deseo, de Tennessee Williams.",
+      "La escena se llena de humanidad con el monólogo de La Agrado de Todo sobre mi madre, de Pedro Almodóvar, y la desgarradora fuerza de Nawal en Incendios, de Wajdi Mouawad.",
+      "Exploramos nuestras raíces con el juego de la Jerigonza y la astucia de La Celestina, de Fernando de Rojas, navegando por el Siglo de Oro con los versos de Lope de Vega y la picardía de Cervantes en El viejo celoso.",
+      "La poesía de Lorca en Doña Rosita la soltera y la sobriedad de Delibes en Cinco horas con Mario nos preparan para el contraste final: la sátira de Don Mendo en su Venganza, de Pedro Muñoz Seca, y, como cierre absoluto, la lucha existencial de Calígula, de Albert Camus.",
+      "Trece estaciones. Trece autores. Un solo impulso: ¡ACTÚA!",
+    ],
+    gallery: [
+      {
+        src: "/images/CartelActua2.jpg",
+        alt: "Cartel de ACTÚA",
+      },
+    ],
+  },
+  {
+    title: "Don Juan Tenorio",
+    author: "José Zorrilla",
+    year: "En cartel",
+    poster: "/images/CartelDon2.jpg",
+    posterAlt: "Cartel de Don Juan Tenorio en cartel",
+    summary:
+      "ROLTEATRO revive el espíritu de uno de los grandes clásicos del teatro español.",
+    synopsis: [
+      "Abordar Don Juan Tenorio supone enfrentarse a uno de los grandes clásicos del teatro español, una obra cuya vigencia reside en la profundidad de sus personajes y en la universalidad de sus conflictos.",
+      "ROLTEATRO asume este reto con una propuesta escénica que respeta la esencia del texto de José Zorrilla, ofreciendo al mismo tiempo una representación cercana, dinámica y emocionante.",
+      "La dirección consigue imprimir un ritmo fluido que permite al espectador adentrarse en la evolución de Don Juan, un personaje que transita desde la soberbia y el desafío hasta el descubrimiento del amor y la redención. Frente a él, Doña Inés se erige como el símbolo de la pureza y la esperanza, convirtiéndose en el eje emocional de la historia.",
+      "El conjunto del reparto demuestra un sólido trabajo interpretativo, construyendo personajes creíbles y llenos de matices. La cuidada iluminación, el vestuario y la ambientación contribuyen a crear una atmósfera evocadora que realza la belleza poética de la obra y mantiene el interés del público durante toda la representación.",
+      "Con esta producción, ROLTEATRO confirma su apuesta por un teatro de calidad, comprometido con la difusión de los grandes clásicos y con la creación de experiencias escénicas capaces de emocionar, conmover e invitar a la reflexión. Una representación que pone de manifiesto la fuerza imperecedera del teatro de José Zorrilla y el talento artístico de una compañía que continúa creciendo con rigor, pasión y sensibilidad.",
+    ],
+    gallery: [
+      {
+        src: "/images/CartelDon2.jpg",
+        alt: "Cartel de Don Juan Tenorio en cartel",
+      },
+    ],
+  },
+];
+
 export const upcomingShows: Show[] = [
+  {
+    title: "VECINOS",
+    author: "ROLTEATRO",
+    year: "Próximamente",
+    poster: "/images/CartelVecinos.jpeg",
+    posterAlt: "Cartel de VECINOS",
+    summary: "Próxima producción teatral de ROLTEATRO.",
+    synopsis: [
+      "Próximamente ampliaremos la información y la sinopsis de este montaje.",
+    ],
+    gallery: [
+      {
+        src: "/images/CartelVecinos.jpeg",
+        alt: "Cartel de VECINOS",
+      },
+    ],
+  },
   {
     title: "La extraña pareja",
     author: "ROLTEATRO",
