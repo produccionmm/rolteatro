@@ -19,5 +19,5 @@ export type Category = {
   text: string;
   button: string;
   image?: string;
-  action: "catalog" | "upcoming" | "notice";
+  action: "catalog" | "current" | "upcoming" | "notice";
 };
