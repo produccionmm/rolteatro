@@ -4,11 +4,11 @@ import { motion } from "framer-motion";
 
 const productions = [
   {
-    title: "Petición de Mano & El Oso",
+    title: "El Canto del Cisne",
     year: "2019",
   },
   {
-    title: "El Canto del Cisne",
+    title: "Petición de Mano & El Oso",
     year: "2020",
   },
   {
@@ -17,7 +17,7 @@ const productions = [
   },
   {
     title: "Lorca",
-    year: "2023",
+    year: "2024",
   },
   {
     title: "Don Juan Tenorio",
@@ -33,13 +33,17 @@ export default function WhoWeAre() {
   return (
     <section
       id="who-we-are"
-      className="relative overflow-hidden bg-[#0b0b0b] py-20 sm:py-24 lg:py-28"
+      className="relative overflow-hidden bg-gradient-to-b from-[#080808] via-[#111111] to-[#090909] py-20 text-white sm:py-24 lg:py-28"
     >
-      <div className="pointer-events-none absolute left-0 top-0 h-80 w-80 rounded-full bg-[#8B1E1E]/10 blur-[120px]" />
+      {/* Luces de fondo */}
+
+      <div className="pointer-events-none absolute -left-40 top-20 h-96 w-96 rounded-full bg-[#8B1E1E]/15 blur-[140px]" />
 
       <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-[#C8A96A]/10 blur-[140px]" />
 
       <div className="container-section relative z-10">
+        {/* CABECERA */}
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,22 +55,79 @@ export default function WhoWeAre() {
             Nuestra historia
           </p>
 
-          <h2 className="mt-4 section-title-light">Quiénes somos</h2>
+          <h2 className="mt-4 section-title-light">
+            Quiénes somos
+          </h2>
 
           <div className="gold-line" />
 
           <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-300">
-            ROLTEATRO es una Compañía y escuela de artes escénicas, con un proyecto que nace de la mano de Pedro García en el año 2016 para la formación, creación y exhibición, donde se ofrece un espacio donde cualquier persona puede aprender, experimentar y disfrutar de las artes escénicas.
+            ROLTEATRO es una compañía y escuela de artes escénicas, con un
+            proyecto que nace de la mano de Pedro García en el año 2016 para
+            la formación, creación y exhibición, donde se ofrece un espacio
+            donde cualquier persona puede aprender, experimentar y disfrutar
+            de las artes escénicas.
           </p>
         </motion.div>
 
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        {/* DIRECCIÓN + PERFIL PROFESIONAL */}
+
+        <div className="grid gap-8 lg:grid-cols-2">
+          {/* DIRECCIÓN */}
+
           <motion.article
             initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 0.7 }}
             className="rounded-[24px] border border-[#C8A96A]/20 bg-gradient-to-br from-[#181818] to-[#101010] p-7 shadow-2xl shadow-black/30 sm:p-10"
+          >
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+              Director de ROLTEATRO
+            </p>
+
+            <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+              Pedro García
+            </h3>
+
+            <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
+
+            <p className="text-lg font-semibold leading-8 text-white">
+              Director de Escuela · Actor profesional · Profesor de
+              Interpretación
+            </p>
+
+            <div className="mt-9 rounded-2xl border border-white/10 bg-black/25 p-6">
+              <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
+                Perfil profesional
+              </p>
+
+              <div className="mt-5 space-y-5 leading-8 text-gray-300">
+                <p>
+                  Director y actor teatral, docente especializado en
+                  interpretación, dirección escénica y formación de actores.
+                  Su trayectoria combina la creación artística desarrollando
+                  proyectos dirigidos a alumnos en proceso de formación.
+                </p>
+
+                <p>
+                  Como director de escuela teatral, impulsa una metodología
+                  basada en el dominio de las técnicas interpretativas,
+                  fomentando un teatro comprometido con la creatividad y la
+                  excelencia artística.
+                </p>
+              </div>
+            </div>
+          </motion.article>
+
+          {/* COMPAÑÍA Y ESCUELA */}
+
+          <motion.article
+            initial={{ opacity: 0, x: 35 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="rounded-[24px] border border-[#C8A96A]/20 bg-[#151515] p-7 shadow-2xl shadow-black/30 sm:p-10"
           >
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
               Rolteatro
@@ -80,9 +141,9 @@ export default function WhoWeAre() {
 
             <div className="space-y-5 text-base leading-8 text-gray-300">
               <p>
-                ROLTEATRO desarrolla su actividad dentro de las artes escénicas,
-                combinando la creación teatral con la formación de nuevos
-                intérpretes.
+                ROLTEATRO desarrolla su actividad dentro de las artes
+                escénicas, combinando la creación teatral con la formación de
+                nuevos intérpretes.
               </p>
 
               <p>
@@ -98,65 +159,136 @@ export default function WhoWeAre() {
                 presencia sobre el escenario.
               </p>
             </div>
-
-            <div className="mt-9 rounded-2xl border border-white/10 bg-black/25 p-6">
-              <p className="text-sm font-bold uppercase tracking-[0.25em] text-[#C8A96A]">
-                Dirección
-              </p>
-
-              <h4 className="mt-3 text-2xl font-bold text-white">
-                Pedro García
-              </h4>
-
-              <p className="mt-4 leading-7 text-gray-300">
-                Actor, director y docente vinculado al mundo teatral, encargado
-                de la dirección artística y pedagógica de ROLTEATRO.
-              </p>
-            </div>
-          </motion.article>
-
-          <motion.article
-            initial={{ opacity: 0, x: 35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="rounded-[24px] border border-[#C8A96A]/20 bg-[#151515] p-7 shadow-2xl shadow-black/30 sm:p-10"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
-              Trayectoria
-            </p>
-
-            <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
-              Trabajos de dirección y montaje
-            </h3>
-
-            <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
-
-            <div className="space-y-4">
-              {productions.map((production, index) => (
-                <motion.div
-                  key={`${production.title}-${production.year}`}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.4,
-                    delay: index * 0.07,
-                  }}
-                  className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-black/25 p-5 transition duration-300 hover:border-[#C8A96A]/45 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <p className="font-semibold text-white">
-                    {production.title}
-                  </p>
-
-                  <span className="text-sm font-bold tracking-[0.12em] text-[#C8A96A]">
-                    {production.year}
-                  </span>
-                </motion.div>
-              ))}
-            </div>
           </motion.article>
         </div>
+
+        {/* EXPERIENCIA */}
+
+        <motion.article
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7 }}
+          className="mt-8 rounded-[24px] border border-[#C8A96A]/20 bg-[#151515] p-7 shadow-2xl shadow-black/30 sm:p-10"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+            Experiencia
+          </p>
+
+          <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+            Dirección y formación teatral
+          </h3>
+
+          <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {/* DIRECTOR DE ESCUELA */}
+
+            <div className="rounded-2xl border border-white/10 bg-black/25 p-6">
+              <h4 className="text-xl font-bold text-white">
+                Director de Escuela de Teatro
+              </h4>
+
+              <ul className="mt-5 space-y-4 leading-7 text-gray-300">
+                <li className="flex gap-3">
+                  <span className="text-[#C8A96A]">•</span>
+                  <span>Diseño y coordinación de programas formativos.</span>
+                </li>
+
+                <li className="flex gap-3">
+                  <span className="text-[#C8A96A]">•</span>
+                  <span>Formación de actores.</span>
+                </li>
+
+                <li className="flex gap-3">
+                  <span className="text-[#C8A96A]">•</span>
+                  <span>Dirección de montajes teatrales.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* DIRECTOR ESCÉNICO */}
+
+            <div className="rounded-2xl border border-white/10 bg-black/25 p-6">
+              <h4 className="text-xl font-bold text-white">
+                Director Escénico de la compañía
+              </h4>
+
+              <p className="mt-5 leading-8 text-gray-300">
+                Dirección de montajes de teatro clásico y contemporáneo,
+                desarrollando procesos creativos desde la dramaturgia hasta
+                la puesta en escena, con especial atención al trabajo
+                actoral.
+              </p>
+            </div>
+          </div>
+        </motion.article>
+
+        {/* TRAYECTORIA */}
+
+        <motion.article
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7 }}
+          className="mt-8 rounded-[24px] border border-[#C8A96A]/20 bg-gradient-to-br from-[#181818] to-[#101010] p-7 shadow-2xl shadow-black/30 sm:p-10"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+            Trayectoria
+          </p>
+
+          <h3 className="mt-4 text-3xl font-bold text-white sm:text-4xl">
+            Trabajos de dirección y montaje
+          </h3>
+
+          <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {productions.map((production, index) => (
+              <motion.div
+                key={`${production.title}-${production.year}`}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: index * 0.07,
+                }}
+                className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-black/25 p-5 transition duration-300 hover:border-[#C8A96A]/45 sm:flex-row sm:items-center sm:justify-between"
+              >
+                <p className="font-semibold text-white">
+                  {production.title}
+                </p>
+
+                <span className="text-sm font-bold tracking-[0.12em] text-[#C8A96A]">
+                  {production.year}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.article>
+
+        {/* FILOSOFÍA */}
+
+        <motion.article
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7 }}
+          className="mx-auto mt-8 max-w-5xl rounded-[24px] border border-[#C8A96A]/30 bg-gradient-to-r from-[#171717] via-[#111111] to-[#171717] p-8 text-center shadow-2xl shadow-black/30 sm:p-12"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-[#C8A96A]">
+            Filosofía de trabajo
+          </p>
+
+          <div className="gold-line" />
+
+          <blockquote className="mx-auto max-w-4xl text-xl font-medium italic leading-9 text-gray-200 sm:text-2xl sm:leading-10">
+            “El teatro es una herramienta de transformación personal y
+            colectiva. Cada montaje constituye una oportunidad para descubrir
+            nuevas formas de comunicar, emocionar y comprender al ser humano.”
+          </blockquote>
+        </motion.article>
       </div>
     </section>
   );
