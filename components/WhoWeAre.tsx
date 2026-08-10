@@ -3,30 +3,13 @@
 import { motion } from "framer-motion";
 
 const productions = [
-  {
-    title: "El Canto del Cisne",
-    year: "2019",
-  },
-  {
-    title: "Petición de Mano & El Oso",
-    year: "2020",
-  },
-  {
-    title: "Bécquer",
-    year: "2022",
-  },
-  {
-    title: "Lorca",
-    year: "2024",
-  },
-  {
-    title: "Don Juan Tenorio",
-    year: "2023, 2025, 2026",
-  },
-  {
-    title: "Actúa",
-    year: "2026",
-  },
+  "Lapislázuli (de José Luis Alonso de Santos)",
+  "Lorca (Espectáculo poético-musical)",
+  "El Canto del Cisne, Petición de mano y El oso (de Antón Chéjov)",
+  "Don Juan Tenorio (de José Zorrilla)",
+  "Bécquer (Espectáculo poético-musical)",
+  "Actúa y Actúa 2 (Escenas extraídas de obras emblemáticas de la historia de nuestro Teatro)",
+  "Dirige la obra “Las Flores del Rincón” de Fernando de las horas (Estreno próximamente)",
 ];
 
 export default function WhoWeAre() {
@@ -63,7 +46,7 @@ export default function WhoWeAre() {
 
           <p className="mx-auto max-w-3xl text-lg leading-8 text-gray-300">
             ROLTEATRO es una compañía y escuela de artes escénicas, con un
-            proyecto que nace de la mano de Pedro García en el año 2016 para
+            proyecto que nace de la mano de Pedro García en el año 2019 para
             la formación, creación y exhibición, donde se ofrece un espacio
             donde cualquier persona puede aprender, experimentar y disfrutar
             de las artes escénicas.
@@ -93,8 +76,7 @@ export default function WhoWeAre() {
             <div className="my-6 h-[2px] w-16 bg-[#C8A96A]" />
 
             <p className="text-lg font-semibold leading-8 text-white">
-              Director de Escuela · Actor profesional · Profesor de
-              Interpretación
+              director de escena, actor y docente teatral.
             </p>
 
             <div className="mt-9 rounded-2xl border border-white/10 bg-black/25 p-6">
@@ -104,18 +86,14 @@ export default function WhoWeAre() {
 
               <div className="mt-5 space-y-5 leading-8 text-gray-300">
                 <p>
-                  Director y actor teatral, docente especializado en
-                  interpretación, dirección escénica y formación de actores.
-                  Su trayectoria combina la creación artística desarrollando
-                  proyectos dirigidos a alumnos en proceso de formación.
+                  Pedro García Martínez es un profesional de la escena con más de tres décadas de trayectoria vinculada al teatro. Formado junto a grandes maestros de la interpretación en los Seminarios del Teatro Español y en el Laboratorio de Teatro William Layton, completó una etapa clave de seis años (1990–1996) como actor en el elenco estable del Teatro Español de Madrid, participando en producciones de gran formato bajo la dirección de figuras de referencia como Gustavo Pérez Puig, Cayetano Luca de Tena o Mara Recatero. Compartiendo escenario y trabajando con insignes actores de la escena española como José María Rodero.
                 </p>
-
                 <p>
-                  Como director de escuela teatral, impulsa una metodología
-                  basada en el dominio de las técnicas interpretativas,
-                  fomentando un teatro comprometido con la creatividad y la
-                  excelencia artística.
+                  En 2019 funda la compañía y escuela Rolteatro, espacio desde el cual desarrolla su labor pedagógica y de dirección escénica. Su trabajo destaca por una búsqueda constante de la verdad orgánica del actor, el rigor en el ritmo de la comedia y la tragedia, y un sello estético propio apoyado en puestas en escena minimalistas, poéticas y de gran impacto visual y espacial.
                 </p>
+                <blockquote className="border-l-2 border-[#C8A96A] pl-5 italic text-gray-200">
+                  “En Rolteatro creemos que la emoción no se fabrica; aparece como consecuencia de una acción verdadera. El teatro empieza escuchando.”
+                </blockquote>
               </div>
             </div>
           </motion.article>
@@ -215,10 +193,7 @@ export default function WhoWeAre() {
               </h4>
 
               <p className="mt-5 leading-8 text-gray-300">
-                Dirección de montajes de teatro clásico y contemporáneo,
-                desarrollando procesos creativos desde la dramaturgia hasta
-                la puesta en escena, con especial atención al trabajo
-                actoral.
+                Al frente de Rolteatro, ha dirigido y llevado a escena espectáculos de diversa índole y complejidad, abordando tanto la gran dramaturgia clásica como el teatro contemporáneo y la creación poético-musical.
               </p>
             </div>
           </div>
@@ -246,25 +221,30 @@ export default function WhoWeAre() {
           <div className="grid gap-4 md:grid-cols-2">
             {productions.map((production, index) => (
               <motion.div
-                key={`${production.title}-${production.year}`}
+                key={production}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.07,
-                }}
-                className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-black/25 p-5 transition duration-300 hover:border-[#C8A96A]/45 sm:flex-row sm:items-center sm:justify-between"
+                transition={{ duration: 0.4, delay: index * 0.07 }}
+                className="rounded-2xl border border-white/10 bg-black/25 p-5 transition duration-300 hover:border-[#C8A96A]/45"
               >
-                <p className="font-semibold text-white">
-                  {production.title}
-                </p>
-
-                <span className="text-sm font-bold tracking-[0.12em] text-[#C8A96A]">
-                  {production.year}
-                </span>
+                <p className="font-semibold leading-7 text-white">{production}</p>
               </motion.div>
             ))}
+          </div>
+
+          <p className="mt-8 leading-8 text-gray-300">
+            En la actualidad; compagina la dirección de la compañía con la labor docente en la Escuela Rolteatro.
+          </p>
+
+          <div className="mt-8 rounded-2xl border border-[#C8A96A]/20 bg-black/25 p-6">
+            <h4 className="text-xl font-bold text-[#C8A96A]">Para 2027;</h4>
+            <ul className="mt-5 space-y-3 leading-7 text-gray-300">
+              <li>• Vecinos” (creación propia) Estreno previsto en junio</li>
+              <li>• D. Juan Tenorio (Reposición como todos los años en fecha)</li>
+              <li>• Feliz aniversario de Adolfo Marsillach.</li>
+              <li>• La extraña pareja de Neil Simon</li>
+            </ul>
           </div>
         </motion.article>
 
@@ -284,9 +264,7 @@ export default function WhoWeAre() {
           <div className="gold-line" />
 
           <blockquote className="mx-auto max-w-4xl text-xl font-medium italic leading-9 text-gray-200 sm:text-2xl sm:leading-10">
-            “El teatro es una herramienta de transformación personal y
-            colectiva. Cada montaje constituye una oportunidad para descubrir
-            nuevas formas de comunicar, emocionar y comprender al ser humano.”
+            “En Rolteatro creemos que la emoción no se fabrica; aparece como consecuencia de una acción verdadera. El teatro empieza escuchando.”
           </blockquote>
         </motion.article>
       </div>
