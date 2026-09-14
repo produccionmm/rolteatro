@@ -9,7 +9,7 @@ const productions = [
   "Don Juan Tenorio (de José Zorrilla)",
   "Bécquer (Espectáculo poético-musical)",
   "Actúa y Actúa 2 (Escenas extraídas de obras emblemáticas de la historia de nuestro Teatro)",
-  "Dirige la obra “Las Flores del Rincón” de Fernando de las horas (Estreno próximamente)",
+  "Dirige la obra “Las Flores del Rincón” de Fernando de las Heras (Estreno próximamente)",
 ];
 
 export default function WhoWeAre() {
