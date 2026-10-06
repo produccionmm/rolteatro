@@ -10,38 +10,63 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-const contactEmail = "rolteatro@gmail.com";
-
 export default function ContactCTA() {
   const [verification, setVerification] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [sending, setSending] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (verification.trim() !== "24") {
       setError("La respuesta de verificación no es correcta.");
+      setSuccess("");
       return;
     }
 
     setError("");
+    setSuccess("");
+    setSending(true);
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
 
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const phone = String(formData.get("phone") ?? "");
-    const message = String(formData.get("message") ?? "");
+    try {
+      const response = await fetch("/api", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: String(formData.get("name") ?? ""),
+          email: String(formData.get("email") ?? ""),
+          phone: String(formData.get("phone") ?? ""),
+          message: String(formData.get("message") ?? ""),
+        }),
+      });
 
-    const subject = encodeURIComponent(
-      `Consulta desde la web de ROLTEATRO - ${name}`,
-    );
+      const data = await response.json();
 
-    const body = encodeURIComponent(
-      `Nombre: ${name}\nCorreo: ${email}\nTeléfono: ${phone}\n\nMensaje:\n${message}`,
-    );
+      if (!response.ok) {
+        throw new Error(data.error || "No se ha podido enviar el mensaje.");
+      }
 
-    window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+      setSuccess(
+        "Mensaje enviado correctamente. Gracias por contactar con ROLTEATRO."
+      );
+
+      form.reset();
+      setVerification("");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "No se ha podido enviar el mensaje. Inténtalo de nuevo."
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -50,7 +75,6 @@ export default function ContactCTA() {
       className="relative overflow-hidden bg-[#090909] py-20 text-white sm:py-24 lg:py-28"
     >
       <div className="pointer-events-none absolute left-[-150px] top-24 h-96 w-96 rounded-full bg-[#8B1E1E]/12 blur-[140px]" />
-
       <div className="pointer-events-none absolute bottom-[-100px] right-[-100px] h-96 w-96 rounded-full bg-[#C8A96A]/10 blur-[140px]" />
 
       <div className="container-section relative z-10">
@@ -59,9 +83,7 @@ export default function ContactCTA() {
             Hablemos
           </p>
 
-          <h2 className="mt-4 section-title-light">
-            Contacto
-          </h2>
+          <h2 className="mt-4 section-title-light">Contacto</h2>
 
           <div className="gold-line" />
 
@@ -77,9 +99,7 @@ export default function ContactCTA() {
               Información
             </p>
 
-            <h3 className="mt-4 text-3xl font-bold">
-              Ponte en contacto
-            </h3>
+            <h3 className="mt-4 text-3xl font-bold">Ponte en contacto</h3>
 
             <div className="my-7 h-[2px] w-16 bg-[#C8A96A]" />
 
@@ -89,12 +109,10 @@ export default function ContactCTA() {
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
               >
                 <FaEnvelope className="mt-1 shrink-0 text-[#C8A96A]" />
-
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Correo electrónico
                   </span>
-
                   <span className="mt-2 block break-all text-white">
                     rolteatro@gmail.com
                   </span>
@@ -106,15 +124,11 @@ export default function ContactCTA() {
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
               >
                 <FaPhoneAlt className="mt-1 shrink-0 text-[#C8A96A]" />
-
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Juan Casas
                   </span>
-
-                  <span className="mt-2 block text-white">
-                    696 90 16 56
-                  </span>
+                  <span className="mt-2 block text-white">696 90 16 56</span>
                 </span>
               </a>
 
@@ -123,15 +137,11 @@ export default function ContactCTA() {
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
               >
                 <FaPhoneAlt className="mt-1 shrink-0 text-[#C8A96A]" />
-
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Pedro García
                   </span>
-
-                  <span className="mt-2 block text-white">
-                    618 87 26 71
-                  </span>
+                  <span className="mt-2 block text-white">618 87 26 71</span>
                 </span>
               </a>
 
@@ -142,12 +152,10 @@ export default function ContactCTA() {
                 className="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/25 p-5 transition hover:border-[#C8A96A]/50"
               >
                 <FaGlobe className="mt-1 shrink-0 text-[#C8A96A]" />
-
                 <span>
                   <span className="block text-xs font-bold uppercase tracking-[0.2em] text-gray-500">
                     Página web
                   </span>
-
                   <span className="mt-2 block text-white">
                     www.rolteatro.es
                   </span>
@@ -202,9 +210,7 @@ export default function ContactCTA() {
               Escríbenos
             </p>
 
-            <h3 className="mt-4 text-3xl font-bold">
-              Envíanos un mensaje
-            </h3>
+            <h3 className="mt-4 text-3xl font-bold">Envíanos un mensaje</h3>
 
             <div className="my-7 h-[2px] w-16 bg-[#C8A96A]" />
 
@@ -256,6 +262,7 @@ export default function ContactCTA() {
                   onChange={(event) => {
                     setVerification(event.target.value);
                     setError("");
+                    setSuccess("");
                   }}
                   required
                   className="min-h-13 w-full rounded-xl border border-white/15 bg-black/30 px-5 text-white outline-none focus:border-[#C8A96A]"
@@ -268,11 +275,18 @@ export default function ContactCTA() {
                 </p>
               )}
 
+              {success && (
+                <p className="rounded-xl border border-green-500/30 bg-green-500/10 p-4 text-sm text-green-300">
+                  {success}
+                </p>
+              )}
+
               <button
                 type="submit"
-                className="inline-flex min-h-13 w-full items-center justify-center rounded-xl bg-[#8B1E1E] px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#6D1515] sm:w-fit"
+                disabled={sending}
+                className="inline-flex min-h-13 w-full items-center justify-center rounded-xl bg-[#8B1E1E] px-8 py-4 text-sm font-bold uppercase tracking-[0.16em] text-white transition hover:bg-[#6D1515] disabled:cursor-not-allowed disabled:opacity-60 sm:w-fit"
               >
-                Enviar mensaje
+                {sending ? "Enviando..." : "Enviar mensaje"}
               </button>
             </div>
           </form>
