@@ -157,7 +157,7 @@ export default function ContactCTA() {
                     Página web
                   </span>
                   <span className="mt-2 block text-white">
-                    www.rolteatro.es
+                    www.rolteatro.com
                   </span>
                 </span>
               </a>
