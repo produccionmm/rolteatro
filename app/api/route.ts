@@ -29,7 +29,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         from: "ROLTEATRO Web <onboarding@resend.dev>",
-        to: ["rolteatro@gmail.com"],
+        to: ["produccion@matizmarketing.com"],
         reply_to: email,
         subject: `Nuevo mensaje desde ROLTEATRO - ${name}`,
         text: `
