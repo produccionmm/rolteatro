@@ -49,7 +49,7 @@ export default function Hero() {
     <h1 className="text-6xl font-black leading-[1.05] md:text-7xl">
       ¿Siempre has querido
       <span className="block text-[#C8A96A]">
-        ahacer teatro?
+        ehacer teatro?
       </span>
     </h1>
 
