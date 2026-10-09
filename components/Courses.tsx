@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -82,6 +83,12 @@ export default function Courses() {
             <h3 className="mt-6 text-4xl font-black leading-tight md:text-5xl">
               Teatro para adultos
             </h3>
+
+            {/* Frase añadida */}
+
+            <p className="mt-4 text-lg font-medium text-[#C8A96A] md:text-xl">
+              El teatro se aprende haciendo Teatro.
+            </p>
 
             <div className="mx-auto mt-7 h-[2px] w-20 bg-[#C8A96A]" />
 
