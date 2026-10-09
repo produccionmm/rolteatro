@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -60,10 +61,7 @@ export default function About() {
                 escénico con profesionales en activo.
               </p>
 
-              <a
-                href="#courses"
-                className="btn-primary mt-10"
-              >
+              <a href="#courses" className="btn-primary mt-10">
                 Conocer los cursos
               </a>
             </div>
@@ -78,16 +76,17 @@ export default function About() {
             transition={{ duration: 0.9 }}
             className="group overflow-hidden rounded-[24px] border border-[#C8A96A]/25 bg-[#151515] shadow-2xl shadow-black/30 transition duration-300 hover:-translate-y-2 hover:border-[#C8A96A]/50"
           >
-            <div className="relative h-72 overflow-hidden border-b border-[#C8A96A]/15">
+            {/* Imagen completa, sin recortes */}
+
+            <div className="relative overflow-hidden border-b border-[#C8A96A]/15 bg-black">
               <Image
                 src="/images/ImagenCompania.jpg"
                 alt="Compañía Rolteatro"
-                fill
+                width={1200}
+                height={800}
                 sizes="(max-width:1024px) 100vw, 50vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
+                className="block h-auto w-full"
               />
-
-              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
             </div>
 
             <div className="p-10">
@@ -107,10 +106,7 @@ export default function About() {
                 originales y de calidad.
               </p>
 
-              <a
-                href="#shows"
-                className="btn-primary mt-10"
-              >
+              <a href="#shows" className="btn-primary mt-10">
                 Ver espectáculos
               </a>
             </div>
