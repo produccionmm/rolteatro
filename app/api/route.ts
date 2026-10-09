@@ -28,7 +28,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "ROLTEATRO Web <onboarding@resend.dev>",
+        from: "ROLTEATRO Web <web@rolteatro.com>",
         to: ["rolteatro@gmail.com"],
         reply_to: email,
         subject: `Nuevo mensaje desde ROLTEATRO - ${name}`,
