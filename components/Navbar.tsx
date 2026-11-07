@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -9,6 +10,7 @@ const links = [
   { label: "Escuela", href: "#about" },
   { label: "Cursos", href: "#courses" },
   { label: "Espectáculos", href: "#shows" },
+  { label: "Opiniones", href: "#opiniones" },
   { label: "Contacto", href: "#contact" },
 ];
 
@@ -67,7 +69,6 @@ export default function Navbar() {
                 <span className="text-white transition-colors duration-300 group-hover:text-[#C83B3B]">
                   ROL
                 </span>
-
                 <span className="text-[#C8A96A] transition-colors duration-300 group-hover:text-[#C83B3B]">
                   TEATRO
                 </span>
@@ -166,7 +167,6 @@ export default function Navbar() {
                   className="flex min-h-16 items-center justify-between text-sm font-bold uppercase tracking-[0.18em] text-white transition-colors hover:text-[#C83B3B]"
                 >
                   <span>{link.label}</span>
-
                   <span className="text-[#C8A96A]" aria-hidden="true">
                     →
                   </span>
